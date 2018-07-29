@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClassroomComponent } from './components/classroom/classroom.component';
+import { StoreComponent } from './components/store/store.component';
 
 
 
@@ -14,7 +17,10 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    ClassroomComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
