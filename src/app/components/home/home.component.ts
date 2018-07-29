@@ -12,12 +12,13 @@ export class HomeComponent implements OnInit {
 
   constructor( private http:HttpClient ) {
 
-    console.log('Constructor del home llmaado.');
-    this.http.get('http://localhost:3000/courses')
-                .subscribe( data => {
-                  this.courses = data;
-                  console.log(data)
-                });
+    // Reference on how to implement the http requests
+    // console.log('Constructor del home llmaado.');
+    // this.http.get('http://localhost:3000/courses')
+    //             .subscribe( data => {
+    //               this.courses = data;
+    //               console.log(data)
+    //             });
 
   }
 
