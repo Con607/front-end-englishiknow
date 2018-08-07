@@ -1,3 +1,140 @@
-<p>
-  classroom works!
-</p>
+
+
+<div class="open-sidebar" style="margin:20px;"><i class="fas fa-bars" style="width:auto;color:rgb(65,127,190);"></i><a (click)="toggleSidebar()">&nbsp;Menu</a></div>
+<div>
+    <div class="overlay"></div>
+    <div id="sidebar" [ngClass]="{active: sidebar}">
+        <div class="sidebar-header">
+            <div id="close-sidebar" (click)="toggleSidebar()"><i class="fa fa-chevron-left"></i></div>
+            <div style="width:200px;height:auto;background-position:center;background-size:cover;background-repeat:no-repeat;"><img class="rounded-circle d-block" src="assets/img/2.jpg" width="100px" height="100pxpx" style="margin:16px;margin-left:auto;width:50%;margin-bottom:16px;margin-right:10%;">
+                <p class="text-center">Welcome users_name!</p>
+            </div>
+            <div style="width:200px;height:auto;background-position:center;background-size:cover;background-repeat:no-repeat;margin-bottom:16px;">
+                <p class="text-center" style="font-size:14px;margin-bottom:0px;">Lessons Completed</p>
+                <p class="text-center" style="font-size:15px;font-style:normal;font-weight:bold;margin:0px;">10 of 27 lessons</p>
+                <div class="progress">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                </div>
+            </div>
+            <div style="width:200px;height:auto;background-position:center;background-size:cover;background-repeat:no-repeat;margin-bottom:16PX;">
+                <p class="text-center" style="font-size:14px;margin-bottom:0px;">Course Results</p>
+                <p class="text-center" style="font-size:15px;font-style:normal;font-weight:bold;margin:0px;">80%</p>
+                <div class="progress">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Dashboard</a></li>
+            <li><a href="#section_1" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Section 1 Name</a>
+                <ul class="list-unstyled collapse" id="section_1" aria-expanded="false">
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 1</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 2</a></li>
+                    <li><a href="#submenu2" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Lesson 3</a>
+                        <ul class="list-unstyled collapse" id="submenu2" aria-expanded="false">
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 4</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Final Quiz</a></li>
+                </ul>
+            </li>
+            <li><a href="#section_2" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Section 2 Name</a>
+                <ul class="list-unstyled collapse" id="section_2" aria-expanded="false">
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 1</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 2</a></li>
+                    <li><a href="#submenu3" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Lesson 3</a>
+                        <ul class="list-unstyled collapse" id="submenu3" aria-expanded="false">
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"><i class="fa fa-link"></i> Leson 4</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 5</a></li>
+                </ul>
+            </li>
+            <li><a href="#section_3" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Section 3 Name</a>
+                <ul class="list-unstyled collapse" id="section_3" aria-expanded="false">
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 1</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 2</a></li>
+                    <li><a href="#submenu4" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Lesson 3</a>
+                        <ul class="list-unstyled collapse" id="submenu4" aria-expanded="false">
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"><i class="fa fa-link"></i> Leson 4</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 5</a></li>
+                </ul>
+            </li>
+            <li><a href="#section_4" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Section 4 Name</a>
+                <ul class="list-unstyled collapse" id="section_4" aria-expanded="false">
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 1</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 2</a></li>
+                    <li><a href="#submenu5" class="collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-link"></i>&nbsp; Lesson 3</a>
+                        <ul class="list-unstyled collapse" id="submenu5" aria-expanded="false">
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                            <li> <a href="#"><i class="fa fa-link"></i> Link</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Lesson 4</a></li>
+                    <li> <a href="#"><i class="fa fa-link"></i>&nbsp; Final Quiz</a></li>
+                </ul>
+            </li>
+        </ul>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Restinguet citius, si ardentem acceperit. Itaque eos id agere.</p>
+        <hr><button class="btn btn-light btn-block" type="button" style="color:rgb(68,87,106);">Log Out</button>
+        <hr>
+    </div>
+    <div id="content">
+        <div class="container">
+            <p></p>
+        </div>
+    </div>
+</div>
+<div class="article-clean" style="margin-bottom:3rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-10 col-xl-8 offset-md-1 offset-lg-1 offset-xl-2 shadow-lg p-3 mb-5 bg-white rounded" style="padding:0px;">
+                <div class="intro">
+                    <h1 class="text-center">Your Wonderful Lesson Title</h1>
+                    <p class="text-center"><span class="by">by</span> <a href="#">Author Name</a><span class="date">Sept 8th, 2016 </span></p><img class="img-fluid" src="assets/img/desk.jpg"></div>
+                <div class="text" style="margin-bottom:50px;">
+                    <p>Sed lobortis mi. Suspendisse vel placerat ligula. <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in
+                        justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac lacus. <strong>Ut vehicula rhoncus</strong> elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit <em>pulvinar dict</em> vel in justo. Vestibulum
+                        ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                    <h2>Aliquam In Arcu </h2>
+                    <p>Suspendisse vel placerat ligula. Vivamus ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                        posuere cubilia Curae.</p>
+                    <figure><img class="figure-img" src="assets/img/beach.jpg">
+                        <figcaption>Caption</figcaption>
+                    </figure>
+                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Suspendisse vel placerat ligula. Vivamus ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit
+                        pulvinar dictum vel in justo.</p>
+                </div>
+                <hr style="margin-bottom:20px;"><button class="btn btn-outline-info d-inline-flex float-left" type="button" style="width:100px;">Previous</button><button class="btn btn-outline-info d-inline-flex float-right" type="button" style="width:100px;">&nbsp; &nbsp; Next&nbsp;</button></div>
+        </div>
+    </div>
+</div>
+<div style="margin-bottom:100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-10 col-xl-8 offset-lg-1 offset-xl-2 shadow-lg p-3 mb-5 bg-white rounded">
+                <h4 class="text-info" style="font-size:24px;font-style:normal;">Leave a comment</h4>
+                <p>Comment:</p>
+                <form><input class="form-control" type="text" name="comment" style="margin-bottom:16px;height:100px;"><button class="btn btn-outline-info" type="button">Submit</button></form>
+            </div>
+        </div>
+    </div>
+</div>

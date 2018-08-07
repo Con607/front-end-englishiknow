@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-store',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _navbarService:NavbarService ) { }
 
   ngOnInit() {
+    this._navbarService.hide();
   }
 
 }

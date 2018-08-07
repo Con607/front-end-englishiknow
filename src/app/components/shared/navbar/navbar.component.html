@@ -1,3 +1,17 @@
-<p>
-  navbar works!
-</p>
+<nav *ngIf="_navbarService.visible" class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button">
+    <div class="container">
+      <a [routerLink]="['/home']" class="navbar-brand" style="background-image:url(&quot;assets/img/g4871.png&quot;);background-repeat:no-repeat;background-size:100%;width:200px;background-position:center;height:50px;"></a><button class="navbar-toggler" data-toggle="collapse"
+            data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mx-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="store.html">STORE</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/courses']">COURSES</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#subscribe">NEWS</a></li>
+                <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">MORE</a>
+                    <div class="dropdown-menu" role="menu">
+                      <a class="dropdown-item" role="presentation" [routerLink]="['/team']">AUTHOR &amp; TEAM</a>
+                      <a class="dropdown-item" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a></div>
+                </li>
+            </ul><span class="navbar-text actions"> <a href="#" class="login">Log In</a><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></span></div>
+    </div>
+</nav>

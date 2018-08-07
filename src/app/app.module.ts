@@ -10,6 +10,21 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClassroomComponent } from './components/classroom/classroom.component';
 import { StoreComponent } from './components/store/store.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { CourseComponent } from './components/courses/course/course.component';
+import { NewCourseComponent } from './components/courses/new-course/new-course.component';
+import { TeamComponent } from './components/team/team.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { ContactusComponent } from './components/contactus/contactus.component';
+
+import { LessonComponent } from './components/lesson/lesson.component';
+
+// Services
+import { CoursesService } from './services/courses.service';
+import { NavbarService } from './services/navbar.service';
+import { SectionsService } from './services/sections.service';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,14 +35,27 @@ import { StoreComponent } from './components/store/store.component';
     NavbarComponent,
     DashboardComponent,
     ClassroomComponent,
-    StoreComponent
+    StoreComponent,
+    CoursesComponent,
+    NewCourseComponent,
+    CourseComponent,
+    LessonComponent,
+    FooterComponent,
+    TeamComponent,
+    ContactusComponent,
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    CoursesService,
+    SectionsService,
+    NavbarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

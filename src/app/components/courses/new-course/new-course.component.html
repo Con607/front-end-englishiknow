@@ -1,0 +1,56 @@
+
+<main class="page landing-page" style="padding-top:0PX;">
+    <div id="courses">
+        <div class="col-lg-10 offset-lg-1 shadow p-3 mb-5 bg-white rounded">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 offset-lg-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="text-left text-info" style="margin:20px;margin-bottom:0px;">New Course<br></h1>
+                                <p class="lead" style="margin:20px;margin-bottom:0px;margin-top:0px;">Fill in the required fields (*).</p>
+                            </div>
+                            <div class="col-lg-12">
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container courses">
+                <div class="row">
+                    <div class="col-lg-12 offset-lg-0 shadow p-3 mb-5 bg-white rounded">
+
+                        <form ngNativeValidate [formGroup]="form" (ngSubmit)="createCourse()" >
+                            <div class="form-group">
+                              <input formControlName="title" name="title" required class="form-control" type="text" placeholder="Course Title"></div>
+                            <div class="form-group">
+                              <textarea formControlName="description" name="description" required class="form-control" placeholder="Description"></textarea></div>
+                            <div class="form-group d-flex justify-content-around">
+                                <div class="form-check" style="margin:0.25rem;">
+                                  <input formControlName="free" name="free" class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Free</label></div>
+                                <div class="form-check" style="margin:0.25rem;">
+                                  <input formControlName="featured" name="featured" class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Featured</label></div>
+                                <div class="form-check" style="margin:0.25rem;">
+                                  <input formControlName="reviewed" name="reviewed" class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Reviewed</label></div>
+                                <div class="form-check" style="margin:0.25rem;">
+                                  <input formControlName="published" name="published" class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Published</label></div>
+                            </div>
+                            <div class="form-group d-flex justify-content-start form-inline">
+                              <input formControlName="price" name="price" required class="form-control" type="number" placeholder="Price" style="margin:0.25rem;">
+                              <input formControlName="sale_price" name="sale_price" class="form-control" type="number" placeholder="Sale Price" style="margin:0.25rem;"></div>
+                            <div class="form-group d-flex flex-row">
+                              <input formControlName="passing_mark" name="passing_mark" required class="form-control d-flex align-self-start" type="number" placeholder="Passing Mark" style="margin:0.25rem;">
+                              <input formControlName="duration" name="duration" class="form-control d-flex align-self-center" type="number" placeholder="Duration in minutes" style="margin:0.25rem;">
+                                <input formControlName="sale_price" name="sale_price" class="form-control d-flex align-self-end" type="number" placeholder="Max Students" style="margin:0.25rem;"></div>
+                            <div class="form-group">
+                              <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button></div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div></div>

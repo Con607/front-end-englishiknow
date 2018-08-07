@@ -1,0 +1,204 @@
+<main class="page landing-page" style="padding-top:0PX;">
+    <div id="course" style="course_div">
+        <div class="card-group" style="padding-bottom:0px;">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="text-left text-info" style="margin-bottom:20px;">{{ course?.title }}<br></h2>
+                                    <p style="margin-bottom:0px;margin-top:0px;">Short description about the course here...&nbsp; {{ course?.description }} ...<br><br></p>
+                                    <p class="text-info" style="font-size:15px;">Author: Elizabeth Anderson<br>Enrolled students: 17 <!-- {{ course?.students?.count }} --><br>Passing mark: {{ course?.passing_mark }} %</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>Course progress:&nbsp;<br><span class="text-dark" style="font-size:20px;">10 of 25 lessons</span></p>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Course results:&nbsp;<br><span class="text-dark" style="font-size:20px;">80% in progress</span></p>
+                                            <div class="progress" style="margin-top:16px;margin-bottom:16px;">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <div class="container course" style="margin-bottom:50px;">
+                            <div class="row" style="margin-bottom:50px;">
+                                <div class="col-md-12">
+                                    <div style="color:rgb(101,142,183);">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a class="nav-link text-info active" role="tab" data-toggle="tab" href="#tab-1">Description</a></li>
+                                            <li class="nav-item"><a class="nav-link text-info" role="tab" data-toggle="tab" href="#tab-2">Lessons</a></li>
+                                            <li class="nav-item"><a class="nav-link text-info" role="tab" data-toggle="tab" href="#tab-3">Reviews</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
+                                                <p><br>Description of the course....<br><br>{{ course?.description }} ...<br><br></p><button class="btn btn-outline-info"
+                                                    type="button">Enroll</button>
+                                                <div class="modal fade" role="dialog" tabindex="-1" id="sign_up">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header" style="background-color:#56c6c6;">
+                                                                <h3 class="text-center text-light modal-title">Sign Up</h3><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                            <div class="modal-body"><img class="rounded-circle d-block" src="assets/img/blank-profile-picture-973460_960_720.png" width="40%" style="margin-right:auto;margin-left:auto;margin-bottom:16px;">
+                                                                <form style="margin:15%;"><input class="form-control" type="text" placeholder="Username" style="margin-top:16px;margin-bottom:16px;"><input class="form-control" type="text" placeholder="Password" style="margin-top:16px;margin-bottom:16px;">
+                                                                    <input
+                                                                        class="form-control" type="text" placeholder="Password Confirmation" style="margin-top:16px;margin-bottom:16px;"><button class="btn btn-outline-info btn-block" type="submit" style="margin-top:30px;">Button</button></form>
+                                                                <p class="text-center">Already have an account?&nbsp;<span class="text-info">Sign In</span></p>
+                                                            </div>
+                                                            <div class="modal-footer" style="background-color:#56c6c6;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" role="tabpanel" id="tab-2">
+                                              <div style="margin-top:1rem;">
+                                                  <div class="row">
+                                                      <div class="col">
+                                                        <button (click)="newSectionMessage(course)" class="btn btn-outline-primary btn-sm float-right d-flex flex-row-reverse align-items-center" type="button" id="btn-add-section">Section<i class="fa fa-plus-circle"></i></button>
+                                                          <button
+                                                              class="btn btn-outline-primary btn-sm float-right d-flex flex-row-reverse align-items-center" type="button" id="btn-add-lesson">Lesson<i class="fa fa-plus-circle"></i></button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div role="tablist" id="accordion-1" style="margin:20px;">
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab">
+                                                            <h5 class="text-center mb-0">
+                                                              <a data-toggle="collapse"
+                                                                  aria-expanded="true"
+                                                                  aria-controls="accordion-1 .item-1"
+                                                                  href="div#accordion-1 .item-1">
+                                                                  Section 1 Name
+                                                                </a>
+                                                              </h5>
+                                                        </div>
+                                                        <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                                                            <div class="card-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item"><span><a [routerLink]="['/classroom']">My Amazing Lesson</a></span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 2 Name</span><i class="fa fa-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 3 Name</span><i class="fa fa-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab">
+                                                            <h5 class="text-center mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2">Section 2 Name</a></h5>
+                                                        </div>
+                                                        <div class="collapse item-2" role="tabpanel" data-parent="#accordion-1">
+                                                            <div class="card-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item"><span>Lesson 1 Name</span><i class="fa fa-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 2 Name</span><i class="fa fa-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 3 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab">
+                                                            <h5 class="text-center mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3">Section 3 Name</a></h5>
+                                                        </div>
+                                                        <div class="collapse item-3" role="tabpanel" data-parent="#accordion-1">
+                                                            <div class="card-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item"><span>Lesson 1 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 2 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 3 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div *ngFor="let course_section_ids of course?.course_section_ids" class="card">
+                                                        <div class="card-header" role="tab">
+                                                            <h5 class="text-center mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3">{{ course?.course_section_ids }}</a></h5>
+                                                        </div>
+                                                        <div class="collapse item-3" role="tabpanel" data-parent="#accordion-1">
+                                                            <div class="card-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item"><span>Lesson 1 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 2 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                    <li class="list-group-item"><span>Lesson 3 Name</span><i class="fa fa-check-square-o pull-right" style="width:auto;height:auto;"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" role="tabpanel" id="tab-3">
+                                                <div class="row" style="margin-top:16px;">
+                                                    <div class="col-md-12 col-lg-8 offset-lg-0"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                        <i
+                                                            class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                            <p>5.0 Average base on 2 ratings</p>
+                                                            <p>Reviews</p>
+                                                            <div class="row" style="margin:0px;padding:20px;">
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
+                                                                    <div style="background-image:url(&quot;assets/img/3.jpg&quot;);background-repeat:no-repeat;background-size:cover;background-position:center;height:50vh;"></div>
+                                                                </div>
+                                                                <div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
+                                                                <div class="col" style="padding:0px;">
+                                                                    <div class="card">
+                                                                        <div class="card-body" style="height:50vh;">
+                                                                            <h4 class="card-title">Title</h4>
+                                                                            <h6 class="text-info card-subtitle mb-2">David_86</h6><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                                            <i
+                                                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                                                <p
+                                                                                    class="card-text" style="margin-top:10PX;margin-bottom:10 PX;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin:0px;padding:20px;">
+                                                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
+                                                                    <div style="background-image:url(&quot;assets/img/avatars/avatar3.jpg&quot;);background-repeat:no-repeat;background-size:cover;background-position:center;height:50vh;"></div>
+                                                                </div>
+                                                                <div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
+                                                                <div class="col" style="padding:0px;">
+                                                                    <div class="card">
+                                                                        <div class="card-body" style="height:50vh;">
+                                                                            <h4 class="card-title">Title</h4>
+                                                                            <h6 class="text-info card-subtitle mb-2">Steffani_05</h6><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                                            <i
+                                                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                                                <p
+                                                                                    class="card-text" style="margin-top:10PX;margin-bottom:10 PX;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
