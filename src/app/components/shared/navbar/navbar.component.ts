@@ -6,9 +6,9 @@ import { NavbarService } from '../../../services/navbar.service';
   templateUrl: './navbar.component.html',
   styleUrls: [
     './navbar.component.css',
+    '../../../../assets/bootstrap/css/bootstrap.min.css',
     '../../../../assets/css/Navigation-with-Button.css',
-    '../../../../assets/css/sidebar.css',
-    '../../../../assets/css/sidebar-1.css'
+    '../../../../assets/css/sidebar.css'
   ]
 })
 export class NavbarComponent implements OnInit {

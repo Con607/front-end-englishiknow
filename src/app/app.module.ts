@@ -16,13 +16,19 @@ import { NewCourseComponent } from './components/courses/new-course/new-course.c
 import { TeamComponent } from './components/team/team.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
+import { LessonComponent } from './components/lessons/lesson/lesson.component';
+import { NewLessonComponent } from './components/lessons/new-lesson/new-lesson.component';
+import { UpdateLessonComponent } from './components/lessons/update-lesson/update-lesson.component';
+import { UpdateArticleComponent } from './components/articles/update-article/update-article.component';
+import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 
-import { LessonComponent } from './components/lesson/lesson.component';
 
 // Services
 import { CoursesService } from './services/courses.service';
 import { NavbarService } from './services/navbar.service';
 import { SectionsService } from './services/sections.service';
+import { LessonsService } from './services/lessons.service';
+import { ArticlesService } from './services/articles.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -43,6 +49,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     TeamComponent,
     ContactusComponent,
+    NewLessonComponent,
+    UpdateLessonComponent,
+    UpdateArticleComponent,
+    EditArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +64,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     CoursesService,
     SectionsService,
-    NavbarService
+    NavbarService,
+    LessonsService,
+    ArticlesService
   ],
   bootstrap: [AppComponent]
 })

@@ -42,9 +42,22 @@ export class CoursesService {
 
     return this.http.post( url, course )
           .pipe( map( (resp :any) => {
-            this.successCourseCreateMessage();
+            let new_course :Course = resp;
+            this.successCourseCreateMessage(new_course.id);
             return resp;
           }));
+
+  }
+
+
+  deleteCourse( id :number ) {
+
+    let url = URL_SERVER + '/courses/' + id;
+
+    return this.http.delete( url )
+            .pipe( map( (resp :any) => {
+              return resp;
+            }))
 
   }
 
@@ -55,13 +68,13 @@ export class CoursesService {
 
 
   // Sweet Alert Messages
-  successCourseCreateMessage(): any {
+  successCourseCreateMessage( id :number): any {
     swal({
       title: 'Course created!',
       text: "Now add some sections and lessons to it.",
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['/courses']);
+      this.router.navigate(['/course/', id]);
     })
   }
 

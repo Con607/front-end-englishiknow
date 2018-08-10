@@ -12,7 +12,7 @@ import { NavbarService } from '../../../services/navbar.service';
 })
 export class NewCourseComponent implements OnInit {
 
-
+  // Change this when the authentication is working
   author_id: number = 1;
   form: FormGroup;
 
@@ -24,7 +24,7 @@ export class NewCourseComponent implements OnInit {
 
   ngOnInit() {
     this._navbarService.show();
-    
+
     this.form = new FormGroup({
       title: new FormControl( null, Validators.required ),
       description: new FormControl( null, Validators.required ),

@@ -1,8 +1,10 @@
+import { Section } from "./section.model";
 
 export class Course {
 
+  course_sections: Section[];
   id: number;
-  
+
   constructor (
     public author_id: number,
     public title: string,
@@ -16,7 +18,7 @@ export class Course {
     public sale_price?: number,
     public duration?: number,
     public max_students?: number,
-    public feature_image?: string,
+    public feature_image?: string
 
   ) {}
 

@@ -16,13 +16,13 @@ export class SectionsService {
 
 
 
-  createSection( section: Section ) {
+  createSection( section :Section ) {
 
     let url = URL_SERVER + '/course_sections';
 
     return this.http.post( url, section )
           .pipe( map( (resp :any) => {
-            this.successSectionCreateMessage();
+            this.successSectionCreateMessage(section.course_id);
             console.log(resp);
             return resp;
           }));
@@ -31,14 +31,37 @@ export class SectionsService {
 
 
 
+  deleteSection( id :number ) {
+
+    let url = URL_SERVER + '/course_sections/' + id;
+
+    return this.http.delete( url )
+            .pipe( map( (resp :any) => {
+              return resp;
+            }))
+  }
+
+
+  updateSection( id :number, updatedSection :Section ) {
+
+    let url = URL_SERVER + '/course_sections/' + id;
+
+    return this.http.patch( url, updatedSection )
+            .pipe( map( (resp :any) => {
+              return resp;
+            }))
+  }
+
+
+
 
   // Sweet Alert Messages
-  successSectionCreateMessage(): any {
+  successSectionCreateMessage(course_id :number): any {
     swal({
       title: 'Section created!',
       text: "Now add some lessons to it.",
       type: 'success'
-    })
+    });
   }
 
 
