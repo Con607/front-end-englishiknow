@@ -13,6 +13,7 @@ import { NewLessonComponent } from './components/lessons/new-lesson/new-lesson.c
 import { UpdateLessonComponent } from './components/lessons/update-lesson/update-lesson.component';
 import { UpdateArticleComponent } from './components/articles/update-article/update-article.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
+import { TranslateEngToSpasComponent } from './components/translate-eng-to-spas/translate-eng-to-spas.component';
 
 
 const app_routes: Routes = [
@@ -20,15 +21,22 @@ const app_routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'course/:id', component: CourseComponent },
   { path: 'new-course', component: NewCourseComponent },
+
   { path: 'lesson', component: LessonComponent },
   { path: 'new-lesson/:course_id/:section_id', component: NewLessonComponent },
   { path: 'update-lesson/:course_id/:lesson_id', component: UpdateLessonComponent },
+
   { path: 'update-article/:lesson_id', component: UpdateArticleComponent },
   { path: 'edit-article/:lesson_id/:article_id/:course_id', component: EditArticleComponent },
+  
+  { path: 'update-translate-eng-to-spa/:lesson_id', component: TranslateEngToSpasComponent },
+  { path: 'edit-translate-eng-to-spa/:lesson_id/:trans-eng-to-spa_id/:course_id', component: TranslateEngToSpasComponent },
+
+  { path: 'classroom', component: ClassroomComponent },
+
   { path: 'team', component: TeamComponent },
   { path: 'contact-us', component: ContactusComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'classroom', component: ClassroomComponent },
   { path: 'store', component: StoreComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];

@@ -7,6 +7,8 @@ import { NavbarService } from '../../../services/navbar.service';
 import swal from 'sweetalert2';
 import { Article } from '../../../models/article.model';
 import { ArticlesService } from '../../../services/articles.service';
+import { ContTransSentenceEnglish } from '../../../models/cont-trans-sentence-english';
+import { ContTransSentenceEnglishService } from '../../../services/cont-trans-sentence-english.service';
 
 
 @Component({
@@ -29,7 +31,8 @@ export class UpdateLessonComponent implements OnInit {
                 private router:Router,
                 private activatedRoute:ActivatedRoute,
                 private _navbarService:NavbarService,
-                private _articlesService:ArticlesService ) {
+                private _articlesService:ArticlesService,
+                private _transToEngService:ContTransSentenceEnglishService ) {
 
     activatedRoute.params.subscribe( params => {
       this.course_id = +params['course_id'];
@@ -41,7 +44,7 @@ export class UpdateLessonComponent implements OnInit {
     this._lessonsService.getLesson( this.lesson_id )
           .subscribe( resp => {
             this.lesson = resp;
-            // console.log(resp);
+            console.log(resp);
           })
   }
 
@@ -82,22 +85,24 @@ export class UpdateLessonComponent implements OnInit {
 
 
 
-  createArticleMessage() {
-    swal({
-      title: 'Create Article',
-      input: 'text',
-      inputPlaceholder: "Article's name",
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.value) {
-        this.createArticle( result.value );
-        swal(
-          'Created!',
-          'The article has been updated.',
-          'success'
-        )
-      }
-    })
+  createTransToEnglish( name :string ) {
+    let transToEnglish = new ContTransSentenceEnglish( this.lesson.id, name );
+
+    this._transToEngService.createTransToEnglish( transToEnglish )
+          .subscribe( resp => {
+            this.lesson = resp;
+            return resp;
+          })
+  }
+
+
+  deleteTransToEnglish( transToEnglish_id :number ) {
+    this._transToEngService.deleteTransToEnglish( transToEnglish_id )
+          .subscribe( resp => {
+            console.log(resp);
+            this.lesson = resp;
+            return resp;
+          })
   }
 
 
@@ -126,6 +131,10 @@ export class UpdateLessonComponent implements OnInit {
   goToEditArticle( lesson_id :number, article_id :number) {
     // console.log(article_id);
     this.router.navigate(['/edit-article/', lesson_id, article_id, this.course_id]);
+  }
+
+  goToEditTransToEnglish( lesson_id :number, transToEnglish_id :number ) {
+    this.router.navigate(['/edit-translate-eng-to-spa/', lesson_id, transToEnglish_id, this.course_id]);
   }
 
 
@@ -159,13 +168,73 @@ export class UpdateLessonComponent implements OnInit {
             this.createArticleMessage();
             // resolve();
           } else if (value === 'Trans-To-English') {
-            resolve();
+            this.createTransToEnglishMessage();
+            // resolve();
           } else if (value === 'Trans-To-Spanish') {
             resolve();
           } else if (value === 'Word List') {
             resolve();
           }
         }
+        )
+      }
+    })
+  }
+
+  createTransToEnglishMessage() {
+    swal({
+      title: 'Create Translation to English Excercise',
+      input: 'text',
+      inputPlaceholder: "Content's name",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.value) {
+        this.createTransToEnglish( result.value );
+        swal(
+          'Created!',
+          'The article has been updated.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  deleteTransToEnglishMessage( transToEnglish_id :number) {
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteTransToEnglish( transToEnglish_id );
+        swal(
+          'Deleted!',
+          'It has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  createArticleMessage() {
+    swal({
+      title: 'Create Article',
+      input: 'text',
+      inputPlaceholder: "Article's name",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.value) {
+        this.createArticle( result.value );
+        swal(
+          'Created!',
+          'The article has been updated.',
+          'success'
         )
       }
     })

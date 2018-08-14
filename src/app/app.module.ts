@@ -21,6 +21,7 @@ import { NewLessonComponent } from './components/lessons/new-lesson/new-lesson.c
 import { UpdateLessonComponent } from './components/lessons/update-lesson/update-lesson.component';
 import { UpdateArticleComponent } from './components/articles/update-article/update-article.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
+import { TranslateEngToSpasComponent } from './components/translate-eng-to-spas/translate-eng-to-spas.component';
 
 
 // Services
@@ -29,6 +30,7 @@ import { NavbarService } from './services/navbar.service';
 import { SectionsService } from './services/sections.service';
 import { LessonsService } from './services/lessons.service';
 import { ArticlesService } from './services/articles.service';
+import { ContTransSentenceEnglishService } from './services/cont-trans-sentence-english.service';
 
 // Pipes
 import { KeepHtmlPipe } from './pipes/keep-html.pipe';
@@ -58,7 +60,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     UpdateLessonComponent,
     UpdateArticleComponent,
     EditArticleComponent,
-    KeepHtmlPipe
+    KeepHtmlPipe,
+    TranslateEngToSpasComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     SectionsService,
     NavbarService,
     LessonsService,
-    ArticlesService
+    ArticlesService,
+    ContTransSentenceEnglishService
   ],
   bootstrap: [AppComponent]
 })

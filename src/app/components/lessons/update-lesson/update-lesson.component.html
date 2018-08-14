@@ -85,18 +85,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Name</td>
+
+                                    <!-- Looping through translations -->
+                                    <tr *ngFor="let transToEnglish of lesson?.cont_trans_sentence_englishes">
+                                        <td>{{ transToEnglish.name }}</td>
                                         <td>
-                                            <div class="course-table-icons"><i class="fa fa-pencil header-section-icons"></i><i class="fa fa-trash-o header-section-icons"></i></div>
+                                            <div class="course-table-icons">
+                                              <i (click)="goToEditTransToEnglish( lesson.id, transToEnglish.id )" class="fa fa-pencil header-section-icons"></i>
+                                              <i (click)="deleteTransToEnglishMessage( transToEnglish.id )" class="fa fa-trash-o header-section-icons"></i>
+                                            </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>
-                                            <div class="course-table-icons"><i class="fa fa-pencil header-section-icons"></i><i class="fa fa-trash-o header-section-icons"></i></div>
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
