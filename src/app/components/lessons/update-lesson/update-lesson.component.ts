@@ -102,7 +102,7 @@ export class UpdateLessonComponent implements OnInit {
 
 
   createArticle( name :string ) {
-    let article = new Article( this.lesson.id, name );
+    let article = new Article( this.lesson.id, name, '<p>Write your article here...</p>' );
     // console.log(article);
     this._articlesService.createArticle( article )
           .subscribe( resp => {
@@ -123,9 +123,9 @@ export class UpdateLessonComponent implements OnInit {
   }
 
 
-  goToEditArticle( lesson_id :number, article_id :number ) {
+  goToEditArticle( lesson_id :number, article_id :number) {
     // console.log(article_id);
-    this.router.navigate(['/edit-article/', lesson_id, article_id]);
+    this.router.navigate(['/edit-article/', lesson_id, article_id, this.course_id]);
   }
 
 

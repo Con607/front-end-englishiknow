@@ -30,7 +30,12 @@ import { SectionsService } from './services/sections.service';
 import { LessonsService } from './services/lessons.service';
 import { ArticlesService } from './services/articles.service';
 
+// Pipes
+import { KeepHtmlPipe } from './pipes/keep-html.pipe';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CKEditorModule } from 'ng2-ckeditor';
+
 
 
 
@@ -52,14 +57,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NewLessonComponent,
     UpdateLessonComponent,
     UpdateArticleComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    KeepHtmlPipe
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule
   ],
   providers: [
     CoursesService,

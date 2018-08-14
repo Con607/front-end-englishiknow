@@ -24,7 +24,7 @@ const app_routes: Routes = [
   { path: 'new-lesson/:course_id/:section_id', component: NewLessonComponent },
   { path: 'update-lesson/:course_id/:lesson_id', component: UpdateLessonComponent },
   { path: 'update-article/:lesson_id', component: UpdateArticleComponent },
-  { path: 'edit-article/:lesson_id/:article_id', component: EditArticleComponent },
+  { path: 'edit-article/:lesson_id/:article_id/:course_id', component: EditArticleComponent },
   { path: 'team', component: TeamComponent },
   { path: 'contact-us', component: ContactusComponent },
   { path: 'dashboard', component: DashboardComponent },

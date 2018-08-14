@@ -38,7 +38,7 @@ export class ArticlesService {
 
 
     updateArticle( article_id :number, updatedArticle :Article ) {
-      let url = URL_SERVER + '/articles/' + article_id;
+      let url = URL_SERVER + '/content_texts/' + article_id;
 
       return this.http.patch( url, updatedArticle )
                 .pipe( map( (resp :any) => {

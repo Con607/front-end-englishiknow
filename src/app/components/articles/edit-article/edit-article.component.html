@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="text-left text-info" style="margin:20px;margin-bottom:0px;">Edit Article<br></h1>
-                                <p class="lead" style="margin:20px;margin-bottom:0px;margin-top:0px;">Create your article.</p>
+                                <!-- <p class="lead" style="margin:20px;margin-bottom:0px;margin-top:0px;">Create your article.</p> -->
                             </div>
                             <div class="col-lg-12">
                                 <hr>
@@ -21,13 +21,21 @@
             <div class="container courses">
                 <div class="row">
                     <div class="col-lg-12 offset-lg-0 shadow p-3 mb-5 bg-white rounded">
-                        <form>
-                            <div class="form-group"><input class="form-control" type="text" [placeholder]="article?.name"></div>
-                            <div class="form-group"><textarea class="form-control" placeholder="Description"></textarea></div>
-                            <div class="form-group"><button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="button" style="width:10rem;margin:3rem;">Save</button></div>
+                        <form ngNativeValidate [formGroup]="form" (ngSubmit)="updateArticle()">
+                            <div class="form-group"><input formControlName="name" name="name" class="form-control" type="text"  [ngModel]="article?.name" ></div>
+                            <!-- <div class="form-group"><textarea class="form-control" placeholder="Description"></textarea></div> -->
+                            <div class="form-group"><button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button></div>
                         </form>
+                        <br>
+                        <ckeditor
+                          [(ngModel)]="ckeditorContent">
+                        </ckeditor>
                     </div>
                 </div>
+
+                <h2>Preview</h2>
+                <!-- {{ ckeditorContent }} -->
+                <div [innerHTML]="ckeditorContent | keepHtml"></div>
             </div>
         </div>
     </div>

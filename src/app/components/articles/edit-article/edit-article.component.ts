@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarService } from '../../../services/navbar.service';
 import { Article } from '../../../models/article.model';
 import { ArticlesService } from '../../../services/articles.service';
 import swal from 'sweetalert2';
+
+import { CKEditorComponent } from 'ng2-ckeditor';
+import { KeepHtmlPipe } from '../../../pipes/keep-html.pipe';
 
 
 @Component({
@@ -21,7 +24,11 @@ export class EditArticleComponent implements OnInit {
   form :FormGroup;
   lesson_id :number;
   article_id :number;
+  course_id :number;
   article :Article;
+
+  ckeditorContent :string;
+  @ViewChild(CKEditorComponent) ckEditor :CKEditorComponent;
 
   constructor( private router:Router,
                 private activatedRoute:ActivatedRoute,
@@ -31,6 +38,7 @@ export class EditArticleComponent implements OnInit {
     activatedRoute.params.subscribe( params => {
     this.lesson_id = +params['lesson_id'];
     this.article_id = +params['article_id'];
+    this.course_id = +params['course_id'];
     })
 
 
@@ -38,6 +46,7 @@ export class EditArticleComponent implements OnInit {
     this._articlesService.getArticle( this.article_id )
         .subscribe( resp => {
           this.article = resp;
+          this.ckeditorContent = this.article.content;
           // console.log(resp);
         })
   }
@@ -46,22 +55,40 @@ export class EditArticleComponent implements OnInit {
     this._navbarService.show();
 
     this.form = new FormGroup({
-      name: new FormControl( null, Validators.required ),
+      name: new FormControl(  ),
       content: new FormControl()
     });
   }
 
 
+
+  // ngAfterViewChecked() {
+  //   let editor = this.ckEditor.instance();
+  //   editor.config.height = '400';
+  //   editor.config.toolbarGroup = [
+  //     { name: 'document', groups: ['mode', 'document', 'doctools'] },
+  //     { name: 'clipboard', groups: ['clipboard', 'undo'] },
+  //     { name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing'] },
+  //     { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']  },
+  //     { name: 'insert', groups: ['insert'] }
+  //   ];
+  //   editor.config.removeButtons = 'Source,Save,Templates,Find,Replace,Scayt,SelectAll,Form,Radio';
+  // }
+
+
+
   updateArticle() {
 
     if ( !this.form.valid ) {
-        return;
+      console.log('Something went wrong.');
+      console.log(this.form);
+      return;
     }
 
     let updatedArticle = new Article(
       this.lesson_id,
       this.form.value.name,
-      this.form.value.content
+      this.ckeditorContent
     )
 
     this._articlesService.updateArticle( this.article_id, updatedArticle )
@@ -81,7 +108,7 @@ export class EditArticleComponent implements OnInit {
       title: 'Article updated!',
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['/lesson/', this.lesson_id]);
+      this.router.navigate(['/update-lesson/', this.course_id , this.lesson_id]);
     })
   }
 
