@@ -36,9 +36,9 @@ export class EditArticleComponent implements OnInit {
                 private _articlesService:ArticlesService ) {
 
     activatedRoute.params.subscribe( params => {
-    this.lesson_id = +params['lesson_id'];
-    this.article_id = +params['article_id'];
-    this.course_id = +params['course_id'];
+      this.lesson_id = +params['lesson_id'];
+      this.article_id = +params['article_id'];
+      this.course_id = +params['course_id'];
     })
 
 

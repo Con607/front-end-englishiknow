@@ -13,7 +13,8 @@ import { NewLessonComponent } from './components/lessons/new-lesson/new-lesson.c
 import { UpdateLessonComponent } from './components/lessons/update-lesson/update-lesson.component';
 import { UpdateArticleComponent } from './components/articles/update-article/update-article.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
-import { TranslateEngToSpasComponent } from './components/translate-eng-to-spas/translate-eng-to-spas.component';
+import { EditTransToEnglishComponent } from './components/translate-eng-to-spas/edit-trans-to-english/edit-trans-to-english.component';
+import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
 
 
 const app_routes: Routes = [
@@ -28,11 +29,12 @@ const app_routes: Routes = [
 
   { path: 'update-article/:lesson_id', component: UpdateArticleComponent },
   { path: 'edit-article/:lesson_id/:article_id/:course_id', component: EditArticleComponent },
-  
-  { path: 'update-translate-eng-to-spa/:lesson_id', component: TranslateEngToSpasComponent },
-  { path: 'edit-translate-eng-to-spa/:lesson_id/:trans-eng-to-spa_id/:course_id', component: TranslateEngToSpasComponent },
 
-  { path: 'classroom', component: ClassroomComponent },
+  { path: 'edit-translate-eng-to-spa/:lesson_id/:transToEnglish_id/:course_id', component: EditTransToEnglishComponent },
+
+  { path: 'edit-translate-spa-to-eng/:lesson_id/:transToSpanish_id/:course_id', component: EditTransToSpanishComponent },
+
+  { path: 'classroom/:course_id', component: ClassroomComponent },
 
   { path: 'team', component: TeamComponent },
   { path: 'contact-us', component: ContactusComponent },

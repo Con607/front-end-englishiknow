@@ -108,18 +108,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>
-                                            <div class="course-table-icons"><i class="fa fa-pencil header-section-icons"></i><i class="fa fa-trash-o header-section-icons"></i></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>
-                                            <div class="course-table-icons"><i class="fa fa-pencil header-section-icons"></i><i class="fa fa-trash-o header-section-icons"></i></div>
-                                        </td>
-                                    </tr>
+
+                                  <!-- Looping through translations -->
+                                  <tr *ngFor="let transToSpanish of lesson?.cont_trans_sentence_spanishes">
+                                      <td>{{ transToSpanish.name }}</td>
+                                      <td>
+                                          <div class="course-table-icons">
+                                            <i (click)="goToEditTransToSpanish( lesson.id, transToSpanish.id )" class="fa fa-pencil header-section-icons"></i>
+                                            <i (click)="deleteTransToSpanishMessage( transToSpanish.id )" class="fa fa-trash-o header-section-icons"></i>
+                                          </div>
+                                      </td>
+                                  </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -127,7 +127,7 @@
                             <table class="table table-striped table-hover table-sm">
                                 <thead>
                                     <tr>
-                                        <th class="table-info" colspan="3">Missing Word</th>
+                                        <th class="table-info" colspan="3">Flashing Words</th>
                                     </tr>
                                 </thead>
                                 <tbody>

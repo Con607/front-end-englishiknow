@@ -11,7 +11,7 @@ export class TranslateEngToSpasComponent implements OnInit {
   constructor( private _navbarService:NavbarService ) { }
 
   ngOnInit() {
-    this._navbarService.hide();
+    this._navbarService.show();
   }
 
 }

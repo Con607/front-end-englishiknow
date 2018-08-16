@@ -16,6 +16,16 @@ export class ArticlesService {
                 private router:Router ) { }
 
 
+    getArticles( lesson_id :number ) {
+      let url = URL_SERVER + '/content_texts/';
+
+      return this.http.get( url, {params: { lesson_id: ''+lesson_id }})
+            .pipe( map( (resp :any) => {
+              return resp;
+            }))
+    }
+
+
     getArticle( article_id :number ) {
       let url = URL_SERVER + '/content_texts/' + article_id;
 

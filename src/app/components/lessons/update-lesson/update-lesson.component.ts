@@ -9,6 +9,8 @@ import { Article } from '../../../models/article.model';
 import { ArticlesService } from '../../../services/articles.service';
 import { ContTransSentenceEnglish } from '../../../models/cont-trans-sentence-english';
 import { ContTransSentenceEnglishService } from '../../../services/cont-trans-sentence-english.service';
+import { ContTransSentenceSpanish } from '../../../models/cont-trans-sentence-spanish';
+import { ContTransSentenceSpanishService } from '../../../services/cont-trans-sentence-spanish.service';
 
 
 @Component({
@@ -32,7 +34,8 @@ export class UpdateLessonComponent implements OnInit {
                 private activatedRoute:ActivatedRoute,
                 private _navbarService:NavbarService,
                 private _articlesService:ArticlesService,
-                private _transToEngService:ContTransSentenceEnglishService ) {
+                private _transToEngService:ContTransSentenceEnglishService,
+                private _transToSpaService:ContTransSentenceSpanishService ) {
 
     activatedRoute.params.subscribe( params => {
       this.course_id = +params['course_id'];
@@ -106,6 +109,27 @@ export class UpdateLessonComponent implements OnInit {
   }
 
 
+  createTransToSpanish( name :string ) {
+    let transToSpanish = new ContTransSentenceSpanish( this.lesson.id, name );
+
+    this._transToSpaService.createTransToSpanish( transToSpanish )
+          .subscribe( resp => {
+            this.lesson = resp;
+            return resp;
+          })
+  }
+
+
+  deleteTransToSpanish( transToSpanish_id :number ) {
+    this._transToSpaService.deleteTransToSpanish( transToSpanish_id )
+          .subscribe( resp => {
+            console.log(resp);
+            this.lesson = resp;
+            return resp;
+          })
+  }
+
+
   createArticle( name :string ) {
     let article = new Article( this.lesson.id, name, '<p>Write your article here...</p>' );
     // console.log(article);
@@ -135,6 +159,10 @@ export class UpdateLessonComponent implements OnInit {
 
   goToEditTransToEnglish( lesson_id :number, transToEnglish_id :number ) {
     this.router.navigate(['/edit-translate-eng-to-spa/', lesson_id, transToEnglish_id, this.course_id]);
+  }
+
+  goToEditTransToSpanish( lesson_id :number, transToSpanish_id :number ) {
+    this.router.navigate(['/edit-translate-spa-to-eng/', lesson_id, transToSpanish_id, this.course_id]);
   }
 
 
@@ -171,7 +199,8 @@ export class UpdateLessonComponent implements OnInit {
             this.createTransToEnglishMessage();
             // resolve();
           } else if (value === 'Trans-To-Spanish') {
-            resolve();
+          this.createTransToSpanishMessage();
+            // resolve();
           } else if (value === 'Word List') {
             resolve();
           }
@@ -180,6 +209,7 @@ export class UpdateLessonComponent implements OnInit {
       }
     })
   }
+
 
   createTransToEnglishMessage() {
     swal({
@@ -190,6 +220,47 @@ export class UpdateLessonComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.createTransToEnglish( result.value );
+        swal(
+          'Created!',
+          'The article has been updated.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  deleteTransToSpanishMessage( transToSpanish_id :number) {
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteTransToSpanish( transToSpanish_id );
+        swal(
+          'Deleted!',
+          'It has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  createTransToSpanishMessage() {
+    swal({
+      title: 'Create Translation to Spanish Excercise',
+      input: 'text',
+      inputPlaceholder: "Content's name",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.value) {
+        this.createTransToSpanish( result.value );
         swal(
           'Created!',
           'The article has been updated.',

@@ -22,6 +22,9 @@ import { UpdateLessonComponent } from './components/lessons/update-lesson/update
 import { UpdateArticleComponent } from './components/articles/update-article/update-article.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 import { TranslateEngToSpasComponent } from './components/translate-eng-to-spas/translate-eng-to-spas.component';
+import { EditTransToEnglishComponent } from './components/translate-eng-to-spas/edit-trans-to-english/edit-trans-to-english.component';
+import { TranslateSpaToEngsComponent } from './components/translate-spa-to-engs/translate-spa-to-engs.component';
+import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
 
 
 // Services
@@ -31,6 +34,7 @@ import { SectionsService } from './services/sections.service';
 import { LessonsService } from './services/lessons.service';
 import { ArticlesService } from './services/articles.service';
 import { ContTransSentenceEnglishService } from './services/cont-trans-sentence-english.service';
+import { ContTransSentenceSpanishService } from './services/cont-trans-sentence-spanish.service';
 
 // Pipes
 import { KeepHtmlPipe } from './pipes/keep-html.pipe';
@@ -61,7 +65,10 @@ import { CKEditorModule } from 'ng2-ckeditor';
     UpdateArticleComponent,
     EditArticleComponent,
     KeepHtmlPipe,
-    TranslateEngToSpasComponent
+    TranslateEngToSpasComponent,
+    EditTransToEnglishComponent,
+    TranslateSpaToEngsComponent,
+    EditTransToSpanishComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     NavbarService,
     LessonsService,
     ArticlesService,
-    ContTransSentenceEnglishService
+    ContTransSentenceEnglishService,
+    ContTransSentenceSpanishService
   ],
   bootstrap: [AppComponent]
 })

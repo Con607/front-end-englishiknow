@@ -40,6 +40,11 @@ export class CourseComponent implements OnInit {
   }
 
 
+  goToClassroom() {
+    this.router.navigate(['/classroom/', this.course.id])
+  }
+
+
   getCourse( id :number ) {
     this._coursesService.getCourse(id)
           .subscribe( (resp :Course) => {

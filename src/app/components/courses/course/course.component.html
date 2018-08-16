@@ -50,8 +50,9 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
-                                                <p><br>Description of the course....<br><br>{{ course?.description }} ...<br><br></p><button class="btn btn-outline-info"
-                                                    type="button">Enroll</button>
+                                                <p><br>Description of the course....<br><br>{{ course?.description }} ...<br><br></p>
+                                                <button class="btn btn-outline-info" type="button">Enroll</button>
+                                                <button (click)="goToClassroom()" class="btn btn-outline-info" type="button">Start Course</button>
                                                 <div class="modal fade" role="dialog" tabindex="-1" id="sign_up">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">

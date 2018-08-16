@@ -16,6 +16,19 @@ export class LessonsService {
                 private router:Router ) { }
 
 
+  getNextLesson( current_lesson_id :number ) {
+    let url = URL_SERVER + '/lessons/' + current_lesson_id;
+    console.log(url);
+
+    return this.http.get( url, {params: { next: 'true' }} )
+          .pipe( map( (resp :any) => {
+            console.log('Im inside LessonsService');
+            console.log(resp);
+            return resp;
+          }))
+  }
+
+
   getLesson( lesson_id :number ) {
     let url = URL_SERVER + '/lessons/' + lesson_id;
 
