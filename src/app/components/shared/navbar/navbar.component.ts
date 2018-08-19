@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarService } from '../../../services/navbar.service';
 import { Router } from '@angular/router';
 
-import { AngularTokenService } from 'angular-token';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   signInStyle :any = '';
 
   constructor( private _navbarService:NavbarService,
-                public tokenService:AngularTokenService,
+                public authService:AuthService,
                 private router:Router ) { }
 
   ngOnInit() {
@@ -30,8 +30,9 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  goToSignIn() {
-    this.router.navigate(['/sign-in']);
+  logOut(){
+    // this.authService.logOutUser().
+    //     subscribe(() => this.router.navigate(['/']));
   }
 
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/user';
-import { AngularTokenService } from 'angular-token';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -19,8 +19,8 @@ export class SignInComponent implements OnInit {
   email :string;
   password :string;
 
-  constructor( private tokenService:AngularTokenService,
-                private router:Router ) { }
+  constructor( private router:Router,
+                public authService:AuthService ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -38,20 +38,21 @@ export class SignInComponent implements OnInit {
         return;
     }
 
-    let signInUser = {
-      login: this.form.value.email,
-      password: this.form.value.password
+    let signInData = {
+      'login': this.form.value.email,
+      'password': this.form.value.password
     }
 
-    this.tokenService.signIn( signInUser )
-        .subscribe( res => {
-          if ( res.status == 200 ) {
-            console.log('Succesfully signed in.');
-            this.successfulSignIn();
-          }
-        }, error => {
-          console.log(error);
-        });
+    // this.authService.logInUser( login, password )
+    //     .subscribe( res => {
+    //       if ( res.status == 200 ) {
+    //         console.log('Succesfully signed in.');
+    //         this.successfulSignIn();
+    //       }
+    //     }, error => {
+    //       console.log(error);
+    //       this.invalidCredentials();
+    //     });
 
   }
 
@@ -65,6 +66,14 @@ export class SignInComponent implements OnInit {
     }).then((result) => {
       this.router.navigate(['courses']);
     });
+  }
+
+  invalidCredentials() {
+    swal({
+      title: 'Invalid credentials',
+      text: 'Please try again.',
+      type: 'error'
+    })
   }
 
 

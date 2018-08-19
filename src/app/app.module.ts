@@ -25,6 +25,7 @@ import { TranslateEngToSpasComponent } from './components/translate-eng-to-spas/
 import { EditTransToEnglishComponent } from './components/translate-eng-to-spas/edit-trans-to-english/edit-trans-to-english.component';
 import { TranslateSpaToEngsComponent } from './components/translate-spa-to-engs/translate-spa-to-engs.component';
 import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 // Services
@@ -35,15 +36,14 @@ import { LessonsService } from './services/lessons.service';
 import { ArticlesService } from './services/articles.service';
 import { ContTransSentenceEnglishService } from './services/cont-trans-sentence-english.service';
 import { ContTransSentenceSpanishService } from './services/cont-trans-sentence-spanish.service';
+import { AuthService } from './services/auth.service';
 
-import { AngularTokenModule } from 'angular-token';
 
 // Pipes
 import { KeepHtmlPipe } from './pipes/keep-html.pipe';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 
@@ -80,10 +80,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CKEditorModule,
-    AngularTokenModule.forRoot({
-      apiBase: 'http://localhost:3000'
-    })
+    CKEditorModule
   ],
   providers: [
     CoursesService,
@@ -93,7 +90,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     ArticlesService,
     ContTransSentenceEnglishService,
     ContTransSentenceSpanishService,
-    AngularTokenModule
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
