@@ -36,11 +36,14 @@ import { ArticlesService } from './services/articles.service';
 import { ContTransSentenceEnglishService } from './services/cont-trans-sentence-english.service';
 import { ContTransSentenceSpanishService } from './services/cont-trans-sentence-spanish.service';
 
+import { AngularTokenModule } from 'angular-token';
+
 // Pipes
 import { KeepHtmlPipe } from './pipes/keep-html.pipe';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 
@@ -68,7 +71,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     TranslateEngToSpasComponent,
     EditTransToEnglishComponent,
     TranslateSpaToEngsComponent,
-    EditTransToSpanishComponent
+    EditTransToSpanishComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,10 @@ import { CKEditorModule } from 'ng2-ckeditor';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    AngularTokenModule.forRoot({
+      apiBase: 'http://localhost:3000'
+    })
   ],
   providers: [
     CoursesService,
@@ -85,7 +92,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     LessonsService,
     ArticlesService,
     ContTransSentenceEnglishService,
-    ContTransSentenceSpanishService
+    ContTransSentenceSpanishService,
+    AngularTokenModule
   ],
   bootstrap: [AppComponent]
 })

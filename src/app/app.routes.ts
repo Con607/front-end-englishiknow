@@ -15,6 +15,7 @@ import { UpdateArticleComponent } from './components/articles/update-article/upd
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 import { EditTransToEnglishComponent } from './components/translate-eng-to-spas/edit-trans-to-english/edit-trans-to-english.component';
 import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 const app_routes: Routes = [
@@ -35,6 +36,8 @@ const app_routes: Routes = [
   { path: 'edit-translate-spa-to-eng/:lesson_id/:transToSpanish_id/:course_id', component: EditTransToSpanishComponent },
 
   { path: 'classroom/:course_id', component: ClassroomComponent },
+
+  { path: 'sign-in', component: SignInComponent },
 
   { path: 'team', component: TeamComponent },
   { path: 'contact-us', component: ContactusComponent },
