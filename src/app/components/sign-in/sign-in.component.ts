@@ -18,14 +18,16 @@ export class SignInComponent implements OnInit {
   form :FormGroup;
   email :string;
   password :string;
+  // passwordConfirmation :string;
 
   constructor( private router:Router,
                 public authService:AuthService ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl(null, [Validators.email, Validators.required]),
+      password: new FormControl(null, Validators.required)
+      // passwordConfirmation: new FormControl(null, Validators.required)
     });
   }
 
@@ -38,43 +40,20 @@ export class SignInComponent implements OnInit {
         return;
     }
 
-    let signInData = {
-      'login': this.form.value.email,
-      'password': this.form.value.password
-    }
+    let user = new User (
+      this.form.value.email,
+      this.form.value.password
+    );
 
-    // this.authService.logInUser( login, password )
-    //     .subscribe( res => {
-    //       if ( res.status == 200 ) {
-    //         console.log('Succesfully signed in.');
-    //         this.successfulSignIn();
-    //       }
-    //     }, error => {
-    //       console.log(error);
-    //       this.invalidCredentials();
-    //     });
+    // console.log(this.form.value.email);
+
+    this.authService.logInUser( user );
 
   }
 
 
 
-  // Sweet Alert Messages
-  successfulSignIn() {
-    swal({
-      title: 'Succesfully signed in!',
-      type: 'success'
-    }).then((result) => {
-      this.router.navigate(['courses']);
-    });
-  }
-
-  invalidCredentials() {
-    swal({
-      title: 'Invalid credentials',
-      text: 'Please try again.',
-      type: 'error'
-    })
-  }
+  
 
 
 }

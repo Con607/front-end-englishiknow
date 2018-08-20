@@ -1,23 +1,47 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient, HttpClientModule, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {Subject, Observable} from "rxjs";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { URL_SERVER } from '../config/config';
+import { User } from '../models/user';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userSignedIn$:Subject<boolean> = new Subject();
+  userToken :string;
 
-  constructor( private http:HttpClient ) {
+  constructor( private http:HttpClient,
+                private router:Router ) {
 
     // this.tokenService.validateToken()
     //       .subscribe( res => {
     //         res == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false);
     //       })
+  }
+
+
+  logInUser( user :User ){
+    let url = URL_SERVER + '/users/sign_in';
+
+    // console.log(url);
+    // console.log(user);
+
+    return this.http.post( url, { user: {email: user.email, password: user.password}}, {observe: 'response'} )
+          .subscribe( (res :any) => {
+            console.log('Succesfully signed in.');
+            this.userToken = res.headers.get('Authorization');
+            this.successfulSignIn();
+            return res;
+        }, error => {
+          console.log(error);
+          this.invalidCredentials();
+        })
   }
 
 
@@ -43,13 +67,22 @@ export class AuthService {
   }
 
 
-  logInUser( login:string, password:string ){
+  // Sweet Alert Messages
+  successfulSignIn() {
+    swal({
+      title: 'Succesfully signed in!',
+      type: 'success'
+    }).then((result) => {
+      this.router.navigate(['courses']);
+    });
+  }
 
-    // return this.tokenService.signIn({ login, password })
-    //       .pipe(map ( res => {
-    //         this.userSignedIn$.next(true);
-    //         return res;
-    //       }))
+  invalidCredentials() {
+    swal({
+      title: 'Invalid credentials',
+      text: 'Please try again.',
+      type: 'error'
+    })
   }
 
 
