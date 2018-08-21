@@ -26,7 +26,6 @@ const app_routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'team', component: TeamComponent },
   { path: 'contact-us', component: ContactusComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'store', component: StoreComponent },
 
   { path: 'sign-in', component: SignInComponent },
@@ -34,6 +33,8 @@ const app_routes: Routes = [
 
   { path: 'courses', component: CoursesComponent },
   { path: 'course/:id', component: CourseComponent },
+
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ SignInGuardGuard ] },
 
   { path: 'new-course', component: NewCourseComponent, canActivate: [ SignInGuardGuard ] },
 

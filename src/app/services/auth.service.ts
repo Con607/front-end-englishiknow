@@ -123,7 +123,7 @@ export class AuthService {
       title: 'Succesfully signed in!',
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['courses']);
+      this.router.navigate(['/dashboard']);
     });
   }
 
@@ -140,7 +140,7 @@ export class AuthService {
       title: 'Succesfully registered!',
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['courses']);
+      this.router.navigate(['/dashboard']);
     });
   }
 
