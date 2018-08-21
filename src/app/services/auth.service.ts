@@ -14,30 +14,44 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  userToken :string;
+  currentUser :User;
+  token :string;
+
+
 
   constructor( private http:HttpClient,
                 private router:Router ) {
 
-    // this.tokenService.validateToken()
-    //       .subscribe( res => {
-    //         res == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false);
-    //       })
+    this.loadStorage();
+  }
+
+
+
+  loadStorage() {
+    if ( localStorage.getItem('token') ) {
+      this.token = localStorage.getItem('token');
+      this.currentUser = JSON.parse(localStorage.getItem('user'));
+    } else {
+      this.token = '';
+      this.currentUser = null;
+    }
+  }
+
+
+  isLoggedIn() {
+    return ( this.token.length > 5 ) ? true : false;
   }
 
 
   logInUser( user :User ){
     let url = URL_SERVER + '/users/sign_in';
 
-    // console.log(url);
-    // console.log(user);
-
     return this.http.post( url, { user: {email: user.email, password: user.password}}, {observe: 'response'} )
           .subscribe( (res :any) => {
             console.log('Succesfully signed in.');
-            this.userToken = res.headers.get('Authorization');
+            this.setInLocalStorage( res.headers.get('Authorization'), res.body );
             this.successfulSignIn();
-            return res;
+            return true;
         }, error => {
           console.log(error);
           this.invalidCredentials();
@@ -45,26 +59,62 @@ export class AuthService {
   }
 
 
+  setInLocalStorage( token :string, user :User ) {
+    localStorage.setItem( 'token', token );
+    localStorage.setItem( 'user', JSON.stringify( user ) );
+    this.loadStorage();
+  }
+
+
+  registerUser( user :User ) {
+    let url = URL_SERVER + '/users';
+
+    // console.log('Im inside registerUser()');
+    // console.log(user);
+
+    return this.http.post( url, { user: user }, {observe: 'response'} )
+            .subscribe( (res :any) => {
+              console.log('User created succesfully.');
+              this.setInLocalStorage( res.headers.get('Authorization'), res.body );
+              this.successfulSignUp();
+              return true;
+            }, error => {
+              console.log(error);
+              if (error.status == 422) {
+                console.log(error.error.errors);
+                this.error422( this.formatErrorMessage(error.error.errors) );
+              } else {
+                this.somethingWentWrong();
+              }
+
+            })
+  }
+
+
+
   logOutUser(){
-    // let url = URL_SERVER + '/auth/sign_out';
-    // let headers = this.tokenService.currentAuthData
-    // console.log(localStorage);
-    //
-    // // return this.http.delete( url, {headers} )
-    // //       .pipe( map( res => {
-    // //         return res;
-    // //       }))
+    this.token = '';
+    this.currentUser = null;
 
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this.router.navigate(['/sign-in']);
   }
 
 
-  registerUser( login:string, password:string, passwordConfirmation:string ) {
-    // return this.tokenService.registerAccount({ login, password })
-    //       .pipe( map( res => {
-    //         this.userSignedIn$.next(true);
-    //         return res;
-    //       }))
+
+  // Loop through errors and concatenate them in a string to display to the user.
+  formatErrorMessage( error :any ):string {
+    let formattedError :string = '';
+
+    for ( let key in error ) {
+        formattedError = formattedError + key + ' ' + error[key] + '\n';
+    }
+
+    return formattedError;
   }
+
 
 
   // Sweet Alert Messages
@@ -80,6 +130,31 @@ export class AuthService {
   invalidCredentials() {
     swal({
       title: 'Invalid credentials',
+      text: 'Please try again.',
+      type: 'error'
+    })
+  }
+
+  successfulSignUp() {
+    swal({
+      title: 'Succesfully registered!',
+      type: 'success'
+    }).then((result) => {
+      this.router.navigate(['courses']);
+    });
+  }
+
+  error422( error ) {
+    swal({
+      title: 'Something went wrong.',
+      text: 'Error: ' + error,
+      type: 'warning'
+    })
+  }
+
+  somethingWentWrong() {
+    swal({
+      title: 'Something went wrong',
       text: 'Please try again.',
       type: 'error'
     })

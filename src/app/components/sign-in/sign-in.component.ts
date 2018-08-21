@@ -45,15 +45,13 @@ export class SignInComponent implements OnInit {
       this.form.value.password
     );
 
-    // console.log(this.form.value.email);
-
     this.authService.logInUser( user );
 
   }
 
 
 
-  
+
 
 
 }

@@ -15,9 +15,9 @@
                 </li>
             </ul>
             <span class="navbar-text actions">
-              <a *ngIf="!(authService.userSignedIn$ | async)" [routerLink]="['/sign-in']" class="login">Log In</a>
-              <a *ngIf="(authService.userSignedIn$ | async)" (click)="logOut()" class="login">Log Out</a>
-              <a *ngIf="!(authService.userSignedIn$ | async)" class="btn btn-light action-button" role="button" href="#">Sign Up</a>
+              <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/sign-in']" class="login pointer">Log In</a>
+              <a *ngIf="authService.isLoggedIn()" (click)="authService.logOutUser()" class="login pointer">Log Out</a>
+              <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/sign-up']" class="btn btn-light action-button" role="button">Sign Up</a>
             </span>
           </div>
     </div>
