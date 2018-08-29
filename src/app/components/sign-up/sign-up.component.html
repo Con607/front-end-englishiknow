@@ -7,8 +7,11 @@
                 <h1 class="text-center text-info" style="margin:20px;margin-bottom:0px;">Sign Up</h1>
                 <hr>
                 <form ngNativeValidate [formGroup]="form" (ngSubmit)="onSignUpSubmit()" >
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <input formControlName="email" name="email" required class="form-control" type="email" placeholder="Email" autofocus="" inputmode="email">
+                    </div> -->
+                    <div class="form-group">
+                      <input formControlName="email" name="email" required class="form-control" type="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                       <input formControlName="password" name="password" required class="form-control" type="password" placeholder="Password">
@@ -22,7 +25,7 @@
                       </p>
                     </div>
                     <div class="form-group">
-                      <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Go</button>
+                      <button  class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Go</button>
                     </div>
                 </form>
             </div>
