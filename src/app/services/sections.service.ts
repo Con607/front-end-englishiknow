@@ -5,51 +5,70 @@ import { Section } from '../models/section.model';
 import { URL_SERVER } from '../config/config';
 import swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectionsService {
 
-  constructor( private http:HttpClient,
-                private router:Router ) { }
+  headers;
 
+  constructor( private http:HttpClient,
+                private router:Router,
+                private authService:AuthService ) {
+
+    this.headers = {
+      'Content-Type':  'application/json',
+      'Authorization': this.authService.getToken()
+    }
+  }
+
+
+  isLoggedIn() {
+    if ( !this.authService.isLoggedIn() ) {
+      this.router.navigate(['/sign-in']);
+    }
+    return true;
+  }
 
 
   createSection( section :Section ) {
+    if ( this.isLoggedIn() ) {
+      let url = URL_SERVER + '/course_sections';
 
-    let url = URL_SERVER + '/course_sections';
-
-    return this.http.post( url, section )
-          .pipe( map( (resp :any) => {
-            this.successSectionCreateMessage(section.course_id);
-            console.log(resp);
-            return resp;
-          }));
-
+      return this.http.post( url, section, { headers: this.headers } )
+            .pipe( map( (resp :any) => {
+              this.successSectionCreateMessage(section.course_id);
+              console.log(resp);
+              return resp;
+            }));
+    }
   }
 
 
 
   deleteSection( id :number ) {
+    if ( this.isLoggedIn() ) {
+      let url = URL_SERVER + '/course_sections/' + id;
 
-    let url = URL_SERVER + '/course_sections/' + id;
-
-    return this.http.delete( url )
-            .pipe( map( (resp :any) => {
-              return resp;
-            }))
+      return this.http.delete( url, { headers: this.headers } )
+              .pipe( map( (resp :any) => {
+                return resp;
+              }));
+    }
   }
 
 
   updateSection( id :number, updatedSection :Section ) {
+    if ( this.isLoggedIn() ) {
+      let url = URL_SERVER + '/course_sections/' + id;
 
-    let url = URL_SERVER + '/course_sections/' + id;
-
-    return this.http.patch( url, updatedSection )
-            .pipe( map( (resp :any) => {
-              return resp;
-            }))
+      return this.http.patch( url, updatedSection, { headers: this.headers } )
+              .pipe( map( (resp :any) => {
+                return resp;
+              }));
+    }
   }
 
 

@@ -5,6 +5,7 @@ import { Course } from '../models/course.model';
 import { URL_SERVER } from '../config/config';
 import swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -12,24 +13,30 @@ import { Router } from '@angular/router';
 })
 export class CoursesService {
 
+  headers;
+
   constructor( private http:HttpClient,
-                private router:Router ) { }
+                private router:Router,
+                private authService:AuthService ) {
+
+    this.headers = {
+      'Content-Type':  'application/json',
+      'Authorization': this.authService.getToken()
+    }
+  }
 
 
 
   getCoursesList() {
-
-    let url = URL_SERVER + '/courses';
-
-    return this.http.get( url );
-
+      let url = URL_SERVER + '/courses';
+      return this.http.get( url );
   }
 
 
   getCourse( course_id ) {
     let url = URL_SERVER + '/courses/' + course_id;
 
-    return this.http.get( url )
+    return this.http.get( url, { headers: this.headers } )
           .pipe( map( (resp :Course) => {
             return resp;
           }))
@@ -37,34 +44,39 @@ export class CoursesService {
 
 
   createCourse( course: Course ) {
+    if ( this.isLoggedIn() ) {
+      let url = URL_SERVER + '/courses';
 
-    let url = URL_SERVER + '/courses';
-
-    return this.http.post( url, course )
-          .pipe( map( (resp :any) => {
-            let new_course :Course = resp;
-            this.successCourseCreateMessage(new_course.id);
-            return resp;
-          }));
-
+      return this.http.post( url, course, { headers: this.headers } )
+            .pipe( map( (resp :any) => {
+              let new_course :Course = resp;
+              this.successCourseCreateMessage(new_course.id);
+              return resp;
+            }));
+    }
   }
 
 
   deleteCourse( id :number ) {
+    if ( this.isLoggedIn() ) {
+      let url = URL_SERVER + '/courses/' + id;
 
-    let url = URL_SERVER + '/courses/' + id;
-
-    return this.http.delete( url )
-            .pipe( map( (resp :any) => {
-              return resp;
-            }))
+      return this.http.delete( url, { headers: this.headers } )
+              .pipe( map( (resp :any) => {
+                return resp;
+              }));
+    }
 
   }
 
 
 
-
-
+  isLoggedIn() {
+    if ( !this.authService.isLoggedIn() ) {
+      this.router.navigate(['/sign-in']);
+    }
+    return true;
+  }
 
 
   // Sweet Alert Messages

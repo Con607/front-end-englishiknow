@@ -26,6 +26,14 @@ export class AuthService {
   }
 
 
+  getToken() {
+    return this.token;
+  }
+
+  getUserId() {
+    return this.currentUser.id;
+  }
+
 
   loadStorage() {
     if ( localStorage.getItem('token') ) {
