@@ -4,17 +4,21 @@
             data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mx-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="store.html">STORE</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/courses']">COURSES</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#subscribe">NEWS</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">MORE</a>
                     <div class="dropdown-menu" role="menu">
                       <a class="dropdown-item" role="presentation" [routerLink]="['/team']">AUTHOR &amp; TEAM</a>
-                      <a class="dropdown-item" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a></div>
+                      <a class="dropdown-item" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a>
+                    </div>
                 </li>
             </ul>
             <span class="navbar-text actions">
+              <a class="login pointer" [routerLink]="['/cart']">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="badge badge-light">{{ cartItems }}</span>
+              </a>
               <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/sign-in']" class="login pointer">Log In</a>
               <a *ngIf="authService.isLoggedIn()" (click)="authService.logOutUser()" class="login pointer">Log Out</a>
               <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/sign-up']" class="btn btn-light action-button" role="button">Sign Up</a>

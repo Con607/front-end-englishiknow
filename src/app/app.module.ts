@@ -27,6 +27,7 @@ import { TranslateSpaToEngsComponent } from './components/translate-spa-to-engs/
 import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { CartComponent } from './components/shopping-cart/cart/cart.component';
 
 
 // Services
@@ -39,6 +40,7 @@ import { ContTransSentenceEnglishService } from './services/cont-trans-sentence-
 import { ContTransSentenceSpanishService } from './services/cont-trans-sentence-spanish.service';
 import { AuthService } from './services/auth.service';
 import { SignInGuardGuard } from './services/guards/sign-in-guard.guard';
+import { CartService } from './services/cart.service';
 
 
 // Pipes
@@ -75,7 +77,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     TranslateSpaToEngsComponent,
     EditTransToSpanishComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     ContTransSentenceEnglishService,
     ContTransSentenceSpanishService,
     AuthService,
-    SignInGuardGuard
+    SignInGuardGuard,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,7 @@ import { EditTransToEnglishComponent } from './components/translate-eng-to-spas/
 import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/edit-trans-to-spanish/edit-trans-to-spanish.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { CartComponent } from './components/shopping-cart/cart/cart.component';
 
 // Guards
 import { SignInGuardGuard } from './services/guards/sign-in-guard.guard';
@@ -35,6 +36,8 @@ const app_routes: Routes = [
   { path: 'course/:id', component: CourseComponent },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [ SignInGuardGuard ] },
+
+  { path: 'cart', component: CartComponent },
 
   { path: 'new-course', component: NewCourseComponent, canActivate: [ SignInGuardGuard ] },
 
