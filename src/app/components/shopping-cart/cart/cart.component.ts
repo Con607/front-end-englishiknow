@@ -4,6 +4,8 @@ import { AuthService } from '../../../services/auth.service';
 import { NavbarService } from '../../../services/navbar.service';
 import { CartService } from '../../../services/cart.service';
 import { Course } from '../../../models/course.model';
+import { PaypalPayment } from '../../../models/paypal-payment.model';
+import { async } from 'rxjs/internal/scheduler/async';
 
 declare let paypal :any;
 
@@ -132,14 +134,58 @@ export class CartComponent implements OnInit, AfterViewChecked, OnDestroy {
   clearCartItems() {
     this.cartItems = [];
     localStorage.removeItem('cartItems');
+    this.cartService.clearCartItems();
   }
 
   sendPaymentConfirmed( payment :any, data :any, cartItems :Course[] ) {
-    this.cartService.sendPaymentConfirmed( payment, data, this.cartItems )
-          .subscribe( res => {
-            console.log(res);
+    console.log(payment);
+    console.log(data);
+    console.log(cartItems);
+
+    // Get the course_ids
+    let courseIds :number[] = [];
+    for ( let course of cartItems ) {
+      courseIds.push( course.id );
+    }
+    // Format the data sent to the backend server first
+    let paypalPayment = new PaypalPayment(
+                      data.orderID,
+                      data.payerID,
+                      data.paymentID,
+                      data.paymentToken,
+                      payment.cart,
+                      payment.create_time,
+                      payment.id,
+                      payment.intent,
+                      payment.payer.payer_info.email,
+                      payment.payer.payer_info.country_code,
+                      payment.payer.payer_info.first_name,
+                      payment.payer.payer_info.middle_name,
+                      payment.payer.payer_info.last_name,
+                      payment.payer.payment_method,
+                      payment.payer.status,
+                      payment.state,
+                      payment.transactions[0].amount.currency,
+                      payment.transactions[0].amount.total
+                    )
+
+    let payment_id :number;
+    this.cartService.sendPaymentConfirmed( paypalPayment, courseIds )
+          .subscribe( async res => {
+            //console.log(res);
+            // Assign courses after payment process
+            let payment_id = <number>await res;
+            console.log(payment_id);
+            this.cartService.sendPayedCourses( courseIds, payment_id ).subscribe( res => {
+              console.log(res);
+            })
           })
+
+
+
   }
+
+
 
 
 }

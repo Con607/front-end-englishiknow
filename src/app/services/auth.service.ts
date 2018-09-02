@@ -27,6 +27,7 @@ export class AuthService {
 
 
   getToken() {
+    console.log(this.token);
     return this.token;
   }
 
@@ -57,6 +58,7 @@ export class AuthService {
     return this.http.post( url, { user: {email: user.email, password: user.password}}, {observe: 'response'} )
           .subscribe( (res :any) => {
             console.log('Succesfully signed in.');
+            console.log( res.headers.get('Authorization'));
             this.setInLocalStorage( res.headers.get('Authorization'), res.body );
             this.successfulSignIn();
             return true;
@@ -101,6 +103,31 @@ export class AuthService {
 
 
   logOutUser(){
+    let url = URL_SERVER + '/users/sign_out';
+
+    return this.http.delete( url, this.getHeaders() )
+          .subscribe( (res :any) => {
+            console.log('Succesfully signed in.');
+            console.log(res);
+            this.clearToken();
+            return true;
+        }, error => {
+          console.log(error);
+        });
+
+
+  }
+
+  getHeaders() {
+    let headers;
+    headers = {
+      'Content-Type':  'application/json',
+      'Authorization': this.getToken()
+    }
+    return headers;
+  }
+
+  clearToken() {
     this.token = '';
     this.currentUser = null;
 

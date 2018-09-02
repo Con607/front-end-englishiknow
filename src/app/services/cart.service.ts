@@ -6,6 +6,7 @@ import { URL_SERVER } from '../config/config';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
+import { PaypalPayment } from '../models/paypal-payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,15 +67,28 @@ export class CartService {
     return of(this.cartItems);
   }
 
-  sendPaymentConfirmed( payment :any, data :any, cartItems :Course[] ) {
+  clearCartItems() {
+    this.cartItems = [];
+  }
+
+  sendPaymentConfirmed( paypal_payment :PaypalPayment, course_ids :number[] ) {
+    console.log(paypal_payment);
+    console.log(this.headers);
+
     // Send Data to the server
-    console.log(payment);
-    console.log(cartItems);
-    let url = URL_SERVER + '/payments';
+    let url = URL_SERVER + '/paypal_payments';
     console.log(url);
-    return this.http.post( url, { payment, data, cartItems }, { headers: this.headers })
+    return this.http.post( url, { "paypal_payment": paypal_payment }, { headers: this.headers })
             .pipe( map( (res :any) => {
               console.log(res);
+              return res;
+            }))
+  }
+
+  sendPayedCourses( course_ids :number[], paypal_payment_id :number ) {
+    let url = URL_SERVER + '/paypal_payments/' + paypal_payment_id + '/assign_courses';
+    return this.http.post( url, { "course_ids": course_ids, "paypal_payment_id": paypal_payment_id }, { headers: this.headers })
+            .pipe( map( (res :any) => {
               return res;
             }))
   }
