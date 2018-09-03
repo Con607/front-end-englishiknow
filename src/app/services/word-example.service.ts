@@ -25,9 +25,9 @@ export class WordExampleService {
   }
 
 
-  getWordExamples() {
+  getWordExamples( word_id :number ) {
     if ( this.isLoggedIn() ) {
-      let url = URL_SERVER + '/word_examples';
+      let url = URL_SERVER + '/word_lists/' + word_id + '/word_examples';
 
       return this.http.get( url, { headers: this.headers } )
             .pipe( map( (res :any) => {
@@ -46,22 +46,36 @@ export class WordExampleService {
   }
 
 
-  createWordExample( word_example :WordExample ) {
+  createWordExample( word_id :number, word_example :WordExample, word_example_form, fastVideoFile: File, slowVideoFile: File ) {
     if ( this.isLoggedIn() ) {
-        let url = URL_SERVER + '/word_examples'
+        let url1 = URL_SERVER + '/word_lists/' + word_id + '/word_examples'
 
-        return this.http.post( url, word_example, { headers: this.headers } )
+        return this.http.post( url1, word_example, { headers: this.headers } )
               .pipe( map( (res :any) => {
                 console.log(res);
+                console.log(res.id);
+                console.log(fastVideoFile);
+                console.log(slowVideoFile);
+                let url2 = URL_SERVER + '/word_lists/' + word_id + '/word_examples/' + res.id + '/create_ssp'
+                const word_example_video = new FormData();
+                word_example_video.append('sentence_fast_video', fastVideoFile);
+                word_example_video.append('sentence_slow_video', slowVideoFile);
+                word_example_video.append('word_example_id', res.id)
+                console.log(word_example_video);
+                this.http.post( url2, word_example_video, { headers: { 'Authorization': this.authService.getToken() } } )
+                      .subscribe( res => {
+                        console.log(res);
+                        return res;
+                      })
                 return res;
               }))
     }
   }
 
 
-  deleteWordExample( word_example_id :number ) {
+  deleteWordExample( word_id :number, word_example_id :number ) {
     if ( this.isLoggedIn() ) {
-      let url = URL_SERVER + '/word_examples/' + word_example_id;
+      let url = URL_SERVER + '/word_lists/' + word_id + '/word_examples/' + word_example_id;
 
       return this.http.delete( url, { headers: this.headers } )
               .pipe( map( (res :any) => {

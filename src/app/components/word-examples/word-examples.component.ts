@@ -8,6 +8,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { WordExample } from '../../models/word-example';
 import { WordExampleService } from '../../services/word-example.service';
 import { WordListService } from '../../services/word-list.service';
+import { ViewChild } from '@angular/core';
+import { URL_SERVER } from '../../config/config';
 
 @Component({
   selector: 'app-word-examples',
@@ -25,6 +27,11 @@ export class WordExamplesComponent implements OnInit {
   display :string = 'none';
   isVisible :boolean = false;
   circleClass :string = 'fas fa-plus-circle';
+  url_server = URL_SERVER;
+
+  @ViewChild('fastVideoInput') fastVideoInput;
+  @ViewChild('slowVideoInput') slowVideoInput;
+
 
   constructor( private router:Router,
                 private activatedRoute:ActivatedRoute,
@@ -46,7 +53,7 @@ export class WordExamplesComponent implements OnInit {
           this.word = res;
         });
 
-    this.getWordExamples();
+    this.getWordExamples( this.word_id );
 
     this.form = new FormGroup({
       sentence: new FormControl()
@@ -69,8 +76,8 @@ export class WordExamplesComponent implements OnInit {
   }
 
 
-  getWordExamples() {
-    this.wordExampleService.getWordExamples()
+  getWordExamples( word_id :number ) {
+    this.wordExampleService.getWordExamples( this.word_id )
         .subscribe( res => {
           console.log(res);
           this.wordExamples = res;
@@ -87,12 +94,13 @@ export class WordExamplesComponent implements OnInit {
 
     let newWordExample = new WordExample(
       this.form.value.sentence,
-      this.tempFastVideo,
-      this.tempSlowVideo,
       this.word_id
     )
 
-    this.wordExampleService.createWordExample( newWordExample )
+    const fastVideoFile = this.fastVideoInput.nativeElement.files[0];
+    const slowVideoFile = this.slowVideoInput.nativeElement.files[0];
+
+    this.wordExampleService.createWordExample( this.word_id, newWordExample, this.form.value, fastVideoFile, slowVideoFile )
           .subscribe( res => {
             this.successWordCreatedMessage();
             this.wordExamples.push(res);
@@ -102,7 +110,7 @@ export class WordExamplesComponent implements OnInit {
 
 
   deleteWordExample( wordExample_id :number, index :number ) {
-    this.wordExampleService.deleteWordExample( wordExample_id )
+    this.wordExampleService.deleteWordExample( this.word_id, wordExample_id )
           .subscribe( res => {
             console.log(res);
             this.wordExamples.splice(index, 1);

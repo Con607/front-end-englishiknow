@@ -7,6 +7,7 @@ import { WordList } from '../../models/word-list';
 import swal from 'sweetalert2';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ViewChild } from '@angular/core';
+import { URL_SERVER } from '../../config/config';
 
 
 @Component({
@@ -24,8 +25,10 @@ export class WordListComponent implements OnInit {
   display :string = 'none';
   isVisible :boolean = false;
   circleClass :string = 'fas fa-plus-circle';
+  url_server = URL_SERVER;
 
   @ViewChild('fastVideoInput') fastVideoInput;
+  @ViewChild('slowVideoInput') slowVideoInput;
 
 
   constructor( private router:Router,
@@ -76,14 +79,13 @@ export class WordListComponent implements OnInit {
     }
 
     let newWord = new WordList(
-      this.form.value.word,
-      this.tempFastVideo,
-      this.tempSlowVideo
+      this.form.value.word
     )
 
     const fastVideoFile = this.fastVideoInput.nativeElement.files[0];
+    const slowVideoFile = this.slowVideoInput.nativeElement.files[0];
 
-    this.wordListService.createWord( newWord, this.form.value, fastVideoFile )
+    this.wordListService.createWord( newWord, this.form.value, fastVideoFile, slowVideoFile )
           .subscribe( res => {
             this.successWordCreatedMessage();
             this.words.push(res);

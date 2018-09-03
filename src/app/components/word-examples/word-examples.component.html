@@ -21,14 +21,22 @@
           <div class="form-group">
             <input formControlName="sentence" name="sentence" type="text" class="form-control" placeholder="Add new word here" required>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="exampleFormControlFile1">Fast video</label>
             <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div> -->
+          <div class="form-group">
+            <label for="fastVideoFile">Fast video</label>
+            <input type="file" #fastVideoInput accept="sound/mp4a" class="form-control-file" id="fastVideoFile">
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="exampleFormControlFile2">Slow video</label>
             <input type="file" class="form-control-file" id="exampleFormControlFile2">
+          </div> -->
+          <div class="form-group">
+            <label for="slowVideoFile">Fast video</label>
+            <input type="file" #slowVideoInput accept="sound/mp4a" class="form-control-file" id="slowVideoFile">
           </div>
             <!-- <input formControlName="name" name="name" class="form-control" type="text"  [ngModel]="article?.name" ></div> -->
           <!-- <div class="form-group"><textarea class="form-control" placeholder="Description"></textarea></div> -->
@@ -52,8 +60,20 @@
       <tbody>
         <tr *ngFor="let wordExample of wordExamples; let i=index">
           <th scope="row">{{ wordExample.sentence }}</th>
-          <td><span class="badge badge-primary badge-pill">{{ wordExample.fast_video }}</span></td>
-          <td><span class="badge badge-primary badge-pill">{{ wordExample.slow_video }}</span></td>
+          <td>
+            <vg-player>
+                <video [vgMedia]="media" #media id="fastVideo" preload="auto" controls style="max-height:3.5rem;min-width:13rem;">
+                    <source [src]="url_server + wordExample.sentence_fast_video?.url" type="audio/mp4">
+                </video>
+            </vg-player>
+          </td>
+          <td>
+            <vg-player>
+                <video [vgMedia]="media" #media id="slowVideo" preload="auto" controls style="max-height:3.5rem;min-width:13rem;">
+                    <source [src]="url_server + wordExample.sentence_slow_video?.url" type="audio/mp4">
+                </video>
+            </vg-player>
+          </td>
           <td>
             <i (click)="deleteWordExampleMessage(wordExample?.id, i)"
                 class="fa fa-trash-o float-right align-items-end header-section-icons pointer">
@@ -62,6 +82,7 @@
         </tr>
       </tbody>
     </table>
+
 
     <!-- <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center"
