@@ -9,6 +9,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">MORE</a>
                     <div class="dropdown-menu" role="menu">
+                      <a class="dropdown-item" role="presentation" *ngIf="authService.isLoggedIn()" [routerLink]="['/word-list']">WORD LIST</a>
                       <a class="dropdown-item" role="presentation" [routerLink]="['/team']">AUTHOR &amp; TEAM</a>
                       <a class="dropdown-item" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a>
                     </div>

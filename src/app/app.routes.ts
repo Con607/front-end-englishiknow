@@ -18,6 +18,8 @@ import { EditTransToSpanishComponent } from './components/translate-spa-to-engs/
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CartComponent } from './components/shopping-cart/cart/cart.component';
+import { WordListComponent } from './components/word-list/word-list.component';
+import { WordExamplesComponent } from './components/word-examples/word-examples.component';
 
 // Guards
 import { SignInGuardGuard } from './services/guards/sign-in-guard.guard';
@@ -36,6 +38,9 @@ const app_routes: Routes = [
   { path: 'course/:id', component: CourseComponent },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [ SignInGuardGuard ] },
+
+  { path: 'word-list', component: WordListComponent, canActivate: [ SignInGuardGuard ] },
+  { path: 'word-examples/:word_id', component: WordExamplesComponent, canActivate: [ SignInGuardGuard ] },
 
   { path: 'cart', component: CartComponent },
 

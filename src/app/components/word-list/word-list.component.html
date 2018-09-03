@@ -1,0 +1,84 @@
+
+<div class="container" style="margin-bottom:3rem;">
+
+    <i *ngIf="authService.isLoggedIn()" (click)="toggleVisible()"
+          class="pointer pull-right"
+          [ngClass]="circleClass"
+          style="color:rgb(81,163,245);font-size:1.5rem;">
+    </i>
+
+    <h2 class="text-info">
+      Word List
+    </h2>
+    <hr>
+    <br>
+
+    <div class="" [ngStyle]="{'display':display}">
+
+      <form ngNativeValidate [formGroup]="form" (ngSubmit)="addWord()">
+          <div class="form-group">
+            <input formControlName="word" name="word" type="text" class="form-control" placeholder="Add new word here" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Fast video</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlFile2">Slow video</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile2">
+          </div>
+            <!-- <input formControlName="name" name="name" class="form-control" type="text"  [ngModel]="article?.name" ></div> -->
+          <!-- <div class="form-group"><textarea class="form-control" placeholder="Description"></textarea></div> -->
+
+          <div class="form-group">
+            <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button>
+          </div>
+      </form>
+
+    </div>
+
+    <table class="table table-hover">
+      <thead class="text-info">
+        <tr>
+          <th scope="col">Word</th>
+          <th scope="col">Fast</th>
+          <th scope="col">Slow</th>
+          <th scope="col">Examples</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let word of words; let i=index">
+          <th scope="row">{{ word.word }}</th>
+          <td><span class="badge badge-primary badge-pill">{{ word.fast_video }}</span></td>
+          <td><span class="badge badge-primary badge-pill">{{ word.slow_video }}</span></td>
+          <td>
+            <i (click)="goToWordExamples(word?.id)"
+                class="fa fa-list-ul float-right align-items-end header-section-icons pointer">
+            </i>
+          </td>
+          <td>
+            <i (click)="deleteWordMessage(word?.id, i)"
+                class="fa fa-trash-o float-right align-items-end header-section-icons pointer">
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let word of words; let i=index">
+      {{ word.word }}
+      <div class="">
+        <span class="badge badge-primary badge-pill">{{ word.fast_video }}</span>
+        <span class="badge badge-primary badge-pill">{{ word.slow_video }}</span>
+      </div>
+      <i (click)="deleteWordMessage(word?.id, i)"
+          class="fa fa-trash-o float-right align-items-end header-section-icons pointer">
+      </i>
+    </li>
+  </ul> -->
+
+</div>
