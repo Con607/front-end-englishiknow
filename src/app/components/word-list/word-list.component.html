@@ -20,13 +20,13 @@
             <input formControlName="word" name="word" type="text" class="form-control" placeholder="Add new word here" required>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlFile1">Fast video</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <label for="fastVideoFile">Fast video</label>
+            <input type="file" #fastVideoInput accept="video/mp4" class="form-control-file" id="fastVideoFile">
           </div>
 
           <div class="form-group">
-            <label for="exampleFormControlFile2">Slow video</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile2">
+            <label for="slowVideoFile">Slow video</label>
+            <input type="file" class="form-control-file" id="slowVideoFile">
           </div>
             <!-- <input formControlName="name" name="name" class="form-control" type="text"  [ngModel]="article?.name" ></div> -->
           <!-- <div class="form-group"><textarea class="form-control" placeholder="Description"></textarea></div> -->
@@ -35,6 +35,16 @@
             <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button>
           </div>
       </form>
+
+      <!-- <form action="http://localhost:3000/api/v1/items"
+              enctype="multipart/form-data"
+              method="post">
+        <p>
+        What is your name? <input type="text" name="submit-name"><br>
+        What file are you sending? <input type="files" name="file"><br>
+        </p>
+        <input type="submit" value="Send"> <input type="reset">
+      </form> -->
 
     </div>
 

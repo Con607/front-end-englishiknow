@@ -52,13 +52,25 @@ export class WordListService {
   }
 
 
-  createWord( word_list :WordList ) {
+  createWord( word_list :WordList, word_list_form, fastVideoFile: File ) {
     if ( this.isLoggedIn() ) {
-        let url = URL_SERVER + '/word_lists'
+        let url1 = URL_SERVER + '/word_lists/';
 
-        return this.http.post( url, word_list, { headers: this.headers } )
+
+
+        return this.http.post( url1, word_list, { headers: this.headers } )
               .pipe( map( (res :any) => {
                 console.log(res);
+                console.log(res.id);
+                let url2 = URL_SERVER + '/word_lists/' + res.id + '/create_wsp'
+                const word_list_video = new FormData();
+                word_list_video.append('word_fast_video', fastVideoFile);
+                word_list_video.append('word_list_id', res.id)
+                this.http.post( url2, word_list_video, { headers: { 'Authorization': this.authService.getToken() } } )
+                      .subscribe( res => {
+                        console.log(res);
+                        return res;
+                      })
                 return res;
               }))
     }
