@@ -44,8 +44,11 @@ export class CoursesService {
 
 
   createCourse( course: Course ) {
+    console.log(course);
+    console.log(this.isLoggedIn());
     if ( this.isLoggedIn() ) {
       let url = URL_SERVER + '/courses';
+      console.log(url);
 
       return this.http.post( url, course, { headers: this.headers } )
             .pipe( map( (resp :any) => {

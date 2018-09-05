@@ -96,7 +96,7 @@
                                                             <td>
                                                                 <div class="course-table-icons">
                                                                   <i class="fa fa-check-square-o header-section-icons"></i>
-                                                                  <i (click)="updateLesson(course.id, lesson.id)" class="fa fa-pencil header-section-icons"></i>
+                                                                  <i (click)="updateLesson(course.id, lesson.id)" class="fa fa-pencil header-section-icons">{{ lesson.id }}</i>
                                                                   <i (click)="deleteLessonMessage(course.id, lesson.id)" class="fa fa-trash-o header-section-icons"></i></div>
                                                             </td>
                                                         </tr>

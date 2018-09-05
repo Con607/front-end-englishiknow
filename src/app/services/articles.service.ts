@@ -30,7 +30,7 @@ export class ArticlesService {
       if ( this.isLoggedIn() ) {
         let url = URL_SERVER + '/content_texts/';
 
-        return this.http.get( url, {params: { lesson_id: ''+lesson_id }})
+        return this.http.get( url, {params: { lesson_id: ''+lesson_id }, headers: this.headers })
               .pipe( map( (resp :any) => {
                 return resp;
               }));
@@ -42,7 +42,7 @@ export class ArticlesService {
       if ( this.isLoggedIn() ) {
         let url = URL_SERVER + '/content_texts/' + article_id;
 
-        return this.http.get( url )
+        return this.http.get( url, { headers: this.headers } )
             .pipe( map( (resp :any) => {
               return resp;
             }));
@@ -54,7 +54,7 @@ export class ArticlesService {
       if ( this.isLoggedIn() ) {
         let url = URL_SERVER + '/content_texts/';
 
-        return this.http.post( url, article )
+        return this.http.post( url, article, { headers: this.headers } )
               .pipe( map( (resp :any) => {
                 return resp;
               }));
@@ -66,7 +66,7 @@ export class ArticlesService {
       if ( this.isLoggedIn() ) {
         let url = URL_SERVER + '/content_texts/' + article_id;
 
-        return this.http.patch( url, updatedArticle )
+        return this.http.patch( url, updatedArticle, { headers: this.headers } )
                   .pipe( map( (resp :any) => {
                     return resp;
                   }));
@@ -78,7 +78,7 @@ export class ArticlesService {
       if ( this.isLoggedIn() ) {
         let url = URL_SERVER + '/content_texts/' + article_id;
 
-        return this.http.delete( url )
+        return this.http.delete( url, { headers: this.headers } )
                 .pipe( map( (resp :any) => {
                   return resp;
                 }));

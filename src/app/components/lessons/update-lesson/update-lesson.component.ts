@@ -40,6 +40,7 @@ export class UpdateLessonComponent implements OnInit {
     activatedRoute.params.subscribe( params => {
       this.course_id = +params['course_id'];
       this.lesson_id = +params['lesson_id'];
+      console.log(+params['lesson_id']);
     })
     // this.section_id = activatedRoute.params['section_id'];
     // console.log('Section id = ' + this.section_id);
@@ -131,7 +132,7 @@ export class UpdateLessonComponent implements OnInit {
 
 
   createArticle( name :string ) {
-    let article = new Article( this.lesson.id, name, '<p>Write your article here...</p>' );
+    let article = new Article( this.lesson_id, name, '<p>Write your article here...</p>' );
     // console.log(article);
     this._articlesService.createArticle( article )
           .subscribe( resp => {
