@@ -4,6 +4,9 @@ import { Course } from '../../../models/course.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavbarService } from '../../../services/navbar.service';
+import { AuthService } from '../../../services/auth.service';
+import { ViewChild } from '@angular/core';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-new-course',
@@ -13,13 +16,17 @@ import { NavbarService } from '../../../services/navbar.service';
 export class NewCourseComponent implements OnInit {
 
   // Change this when the authentication is working
-  author_id: number = 1;
+  author_id: number;
   form: FormGroup;
+  images :string = 'Images';
+
+  @ViewChild('imagesInput') imagesInput;
 
 
   constructor( private _coursesService:CoursesService,
                 private router:Router,
-                private _navbarService:NavbarService ) { }
+                private _navbarService:NavbarService,
+                private authService:AuthService ) { }
 
 
   ngOnInit() {
@@ -42,13 +49,15 @@ export class NewCourseComponent implements OnInit {
   }
 
 
-  createCourse() {
+  async createCourse() {
 
     console.log(this.form.value);
 
     if ( !this.form.valid ) {
         return;
     }
+
+    this.author_id = await this.authService.getUserId();
 
     let course = new Course(
       this.author_id,
@@ -70,7 +79,6 @@ export class NewCourseComponent implements OnInit {
           });
 
   }
-
 
 
 

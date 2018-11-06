@@ -7,6 +7,8 @@ import swal from 'sweetalert2'
 import { SectionsService } from '../../../services/sections.service';
 import { Section } from '../../../models/section.model';
 import { LessonsService } from '../../../services/lessons.service';
+import { CartService } from '../../../services/cart.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-course',
@@ -21,13 +23,16 @@ export class CourseComponent implements OnInit {
 
   course :Course;
   section :Section;
+  author :string;
 
   constructor( private _coursesService:CoursesService,
                 private router:Router,
                 private activatedRoute:ActivatedRoute,
                 private _navbarService:NavbarService,
                 private _sectionsService:SectionsService,
-                private _lessonsService:LessonsService ) {
+                private _lessonsService:LessonsService,
+                private authService:AuthService,
+                private cartService:CartService ) {
 
     this.activatedRoute.params.subscribe( params => {
       this.getCourse( params['id'] );
@@ -50,7 +55,22 @@ export class CourseComponent implements OnInit {
           .subscribe( (resp :Course) => {
             console.log(resp);
             this.course = resp;
+            this.getAuthor( resp.author.id );
+            console.log(resp.author.id);
             console.log(this.course.course_sections);
+            console.log(this.course);
+            // console.log('author: ' + this.course);
+            // console.log('students: ' + this.course);
+          });
+  }
+
+
+  getAuthor( author_id :number ) {
+    this._coursesService.getAuthor( author_id )
+          .subscribe( (res :any) => {
+            console.log(res);
+            this.author = res.user.email;
+            console.log(this.author);
           });
   }
 
@@ -115,8 +135,54 @@ export class CourseComponent implements OnInit {
   }
 
 
+  addToCart( course :Course ) {
+    if ( this.cartService.addToCart( course ) ) {
+      this.addedToCartMessage();
+    } else {
+      this.alreadyInCartMessage();
+    }
+  }
+
+
 
   // Sweet Alert Messages
+  addedToCartMessage(): any {
+    const toast = swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: true,
+      confirmButtonText: 'Checkout',
+      showCancelButton: true,
+      cancelButtonText: 'Continue shopping',
+      reverseButtons: true,
+      showCloseButton: true,
+      timer: 30000
+    });
+
+    toast({
+      type: 'success',
+      title: 'Course added to your cart.'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(['/cart']);
+      }
+    })
+  }
+
+  alreadyInCartMessage(): any {
+    const toast = swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    toast({
+      type: 'info',
+      title: 'Course already in your cart.'
+    })
+  }
+
   newSectionMessage() {
     swal({
       title: 'New Section',

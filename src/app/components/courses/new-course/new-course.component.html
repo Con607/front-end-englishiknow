@@ -42,9 +42,15 @@
                             <div class="form-group d-flex flex-row">
                               <input formControlName="passing_mark" name="passing_mark" required class="form-control d-flex align-self-start" type="number" placeholder="Passing Mark" style="margin:0.25rem;">
                               <input formControlName="duration" name="duration" class="form-control d-flex align-self-center" type="number" placeholder="Duration in minutes" style="margin:0.25rem;">
-                                <input formControlName="sale_price" name="sale_price" class="form-control d-flex align-self-end" type="number" placeholder="Max Students" style="margin:0.25rem;"></div>
+                              <input formControlName="sale_price" name="sale_price" class="form-control d-flex align-self-end" type="number" placeholder="Max Students" style="margin:0.25rem;">
+                            </div>
                             <div class="form-group">
-                              <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button></div>
+                              <label for="images">Images</label>
+                              <input type="file" #images class="form-control-file" id="images">
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-outline-primary d-flex justify-content-center mx-auto" type="submit" style="width:10rem;margin:3rem;">Save</button>
+                            </div>
                         </form>
 
                     </div>

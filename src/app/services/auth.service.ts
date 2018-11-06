@@ -27,6 +27,7 @@ export class AuthService {
 
 
   getToken() {
+    this.token = localStorage.getItem('token');
     console.log(this.token);
     return this.token;
   }
@@ -48,7 +49,15 @@ export class AuthService {
 
 
   isLoggedIn() {
+    if (!this.token) {
+      return false;
+    }
     return ( this.token.length > 5 ) ? true : false;
+  }
+
+  isAdmin() {
+    // console.log(this.currentUser.role);
+    return ( this.currentUser.role === 'admin' ) ? true : false;
   }
 
 
@@ -107,7 +116,7 @@ export class AuthService {
 
     return this.http.delete( url, this.getHeaders() )
           .subscribe( (res :any) => {
-            console.log('Succesfully signed in.');
+            console.log('Succesfully signed out.');
             console.log(res);
             this.clearToken();
             return true;
@@ -133,9 +142,13 @@ export class AuthService {
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.clear();
+
+    // sessionStorage.clear();
 
     this.router.navigate(['/sign-in']);
   }
+
 
 
 

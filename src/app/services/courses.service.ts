@@ -19,12 +19,15 @@ export class CoursesService {
                 private router:Router,
                 private authService:AuthService ) {
 
-    this.headers = {
+    this.headers = this.getHeaders();
+  }
+
+  getHeaders() {
+    return {
       'Content-Type':  'application/json',
       'Authorization': this.authService.getToken()
     }
   }
-
 
 
   getCoursesList() {
@@ -36,10 +39,18 @@ export class CoursesService {
   getCourse( course_id ) {
     let url = URL_SERVER + '/courses/' + course_id;
 
-    return this.http.get( url, { headers: this.headers } )
-          .pipe( map( (resp :Course) => {
+    return this.http.get( url, { headers: this.getHeaders() } )
+          .pipe( map( (resp :any) => {
             return resp;
           }))
+  }
+
+  getAuthor( author_id ) {
+    let url = URL_SERVER + '/authors/' + author_id;
+    return this.http.get( url, { headers: this.getHeaders() } )
+            .pipe( map( (res :any) => {
+              return res;
+            }))
   }
 
 
@@ -50,7 +61,7 @@ export class CoursesService {
       let url = URL_SERVER + '/courses';
       console.log(url);
 
-      return this.http.post( url, course, { headers: this.headers } )
+      return this.http.post( url, course, { headers: this.getHeaders() } )
             .pipe( map( (resp :any) => {
               let new_course :Course = resp;
               this.successCourseCreateMessage(new_course.id);
@@ -64,7 +75,7 @@ export class CoursesService {
     if ( this.isLoggedIn() ) {
       let url = URL_SERVER + '/courses/' + id;
 
-      return this.http.delete( url, { headers: this.headers } )
+      return this.http.delete( url, { headers: this.getHeaders() } )
               .pipe( map( (resp :any) => {
                 return resp;
               }));

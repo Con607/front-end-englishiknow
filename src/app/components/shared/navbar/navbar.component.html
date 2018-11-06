@@ -3,18 +3,21 @@
       <a [routerLink]="['/home']" class="navbar-brand" style="background-image:url(&quot;assets/img/g4871.png&quot;);background-repeat:no-repeat;background-size:100%;width:200px;background-position:center;height:50px;"></a><button class="navbar-toggler" data-toggle="collapse"
             data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
+
             <ul class="nav navbar-nav mx-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/courses']">COURSES</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#subscribe">NEWS</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">MORE</a>
-                    <div class="dropdown-menu" role="menu">
-                      <a class="dropdown-item" role="presentation" *ngIf="authService.isLoggedIn()" [routerLink]="['/word-list']">WORD LIST</a>
-                      <a class="dropdown-item" role="presentation" [routerLink]="['/team']">AUTHOR &amp; TEAM</a>
-                      <a class="dropdown-item" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a>
-                    </div>
+                <!-- <li class="nav-item" role="presentation"><a class="nav-link" href="#subscribe">NEWS</a></li> -->
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" role="presentation" *ngIf="authService.isLoggedIn()" [routerLink]="['/word-list']">WORD LIST</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" role="presentation" [routerLink]="['/team']">TEAM</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" role="presentation" [routerLink]="['/contact-us']">CONTACT US</a>
                 </li>
             </ul>
+
             <span class="navbar-text actions">
               <a class="login pointer" [routerLink]="['/cart']">
                 <i class="fa fa-shopping-cart"></i>
@@ -27,3 +30,20 @@
           </div>
     </div>
 </nav>
+
+<!-- <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">EIK</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+            id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="features.html">Features</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="about-us.html">About Us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="registration.html">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav> -->

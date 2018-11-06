@@ -1,4 +1,4 @@
-<main class="page landing-page" style="padding-top:0PX;">
+<!-- <main class="page landing-page" style="padding-top:0PX;">
     <div id="courses">
         <div class="col-lg-10 offset-lg-1 shadow p-3 mb-5 bg-white rounded">
             <div class="container">
@@ -56,7 +56,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <p class="card-text">{{ course.description }}</p> -->
                                 <div style="text-align:center;">
                                     <button [routerLink]="['/course/' + course.id]" class="btn btn-outline-info align-self-baseline"
                                       style="margin-left:0.5rem;margin-right:0.5rem;" type="button">
@@ -75,100 +74,205 @@
                                   </div>
                                 </div>
                         </div>
-
-                        <!-- <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/desk.jpg">
-                            <div class="card-body">
-                                <h4 class="text-info card-title">Title</h4>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <p class="text-center text-success">Price:&nbsp;</p>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-center text-success">$ 34USD&nbsp;</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
-                                            <i
-                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:#a2a2a2;font-size:25px;margin:3px;"></i>
-                                                <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit.&nbsp;<br>Donec id elit non mi porta gravida at eget metus.<br><br></p><button class="btn btn-outline-info btn-block align-self-baseline" type="button">View Course</button></div>
-                        </div>
-                        <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/desk.jpg">
-                            <div class="card-body">
-                                <h4 class="text-info card-title">Title</h4>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <p class="text-center text-success">Price:&nbsp;</p>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-center text-success">$ 15USD&nbsp;</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
-                                            <i
-                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:#a2a2a2;font-size:25px;margin:3px;"></i>
-                                                <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-outline-info btn-block align-self-baseline" type="button">View Course</button></div>
-                        </div>
-                        <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/building.jpg">
-                            <div class="card-body">
-                                <h4 class="text-info card-title">Title</h4>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <p class="text-center text-success">Price:&nbsp;</p>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-center text-success">$ 34USD&nbsp;</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
-                                            <i
-                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:#a2a2a2;font-size:25px;margin:3px;"></i>
-                                                <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-outline-info btn-block align-self-baseline"
-                                    type="button">View Course</button></div>
-                        </div>
-                        <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/building.jpg">
-                            <div class="card-body">
-                                <h4 class="text-info card-title">Title</h4>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <p class="text-center text-success">Price:&nbsp;</p>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-center text-success">FREE</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
-                                            <i
-                                                class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:#a2a2a2;font-size:25px;margin:3px;"></i>
-                                                <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. <br><br>Nullam id dolor id nibh ultricies vehicula ut id elit.&nbsp;<br><br>Donec id elit non mi porta gravida at eget metus.<br><br>Donec id elit non mi porta
-                                    gravida at eget metus.</p><button class="btn btn-outline-info btn-block align-self-baseline" type="button">View Course</button></div>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</main> -->
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Courses</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+            </div>
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="d-none d-md-block">
+                            <div class="filters">
+                                <div class="filter-item">
+                                  <form><input class="form-control" type="search" name="search_course" placeholder="Search course"></form>
+                                </div>
+                                <div class="filter-item" *ngIf="( authService.isLoggedIn() && authService.isAdmin() )">
+                                  <i (click)="goToNewCourse()"
+                                  class="fas fa-plus-circle pointer"
+                                  style="color:rgb(81,163,245);font-size:1.2rem;"><span style="font-weight:normal;">  Add Course</span></i>
+                                </div>
+                                <div class="filter-item">
+                                    <h3>Categories</h3>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Laptops</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">PC</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Tablets</label></div>
+                                </div>
+                                <div class="filter-item">
+                                    <h3>Brands</h3>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-5">Samsung</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-6">Apple</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7"><label class="form-check-label" for="formCheck-7">HTC</label></div>
+                                </div>
+                                <div class="filter-item">
+                                    <h3>OS</h3>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8"><label class="form-check-label" for="formCheck-8">Android</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9"><label class="form-check-label" for="formCheck-9">iOS</label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-md-none">
+                          <a class="btn btn-link d-md-none filter-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="filters" role="button" href="#filters">Filters<i class="icon-arrow-down filter-caret"></i></a>
+                            <div class="collapse"
+                                id="filters">
+                                <div class="filters">
+                                    <div class="filter-item">
+                                      <form style="padding-right:2.3rem;"><input class="form-control" type="search" name="search_course" placeholder="Search course"></form>
+                                    </div>
+                                    <div class="filter-item" *ngIf="authService.isLoggedIn()">
+                                      <i (click)="goToNewCourse()"
+                                      class="fas fa-plus-circle pointer"
+                                      style="color:rgb(81,163,245);font-size:1.2rem;"><span style="font-weight:normal;">  Add Course</span></i>
+                                    </div>
+                                    <div class="filter-item">
+                                        <h3>Categories</h3>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Laptops</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">PC</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Tablets</label></div>
+                                    </div>
+                                    <div class="filter-item">
+                                        <h3>Brands</h3>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-5">Samsung</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-6">Apple</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7"><label class="form-check-label" for="formCheck-7">HTC</label></div>
+                                    </div>
+                                    <div class="filter-item">
+                                        <h3>OS</h3>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8"><label class="form-check-label" for="formCheck-8">Android</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9"><label class="form-check-label" for="formCheck-9">iOS</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="products">
+                            <div class="row no-gutters">
+
+                                <div *ngFor="let course of courses" class="col-12 col-md-6 col-lg-4">
+                                    <div class="clean-product-item">
+                                        <div class="image"><a [routerLink]="['/course/' + course.id]"><img class="img-fluid d-block mx-auto" src="assets/img/desk.jpg"></a></div>
+                                        <div class="product-name"><a href="#">{{ course.title }}</a></div>
+                                        <div class="about">
+                                            <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                            <div *ngIf="course.price" class="price">
+                                                <h3>{{ course.price | currency }}</h3>
+                                            </div>
+                                            <div *ngIf="course.free" class="price">
+                                                <h3>FREE</h3>
+                                            </div>
+                                        </div>
+                                        <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
+                                        <div style="text-align:center;">
+                                            <button [routerLink]="['/course/' + course.id]" class="btn btn-outline-info align-self-baseline"
+                                              style="margin-left:0.5rem;margin-right:0.5rem;" type="button">
+                                              <i class="fa fa-search pointer login"></i>
+                                            </button>
+                                            <button type="button" class="align-self-baselin btn btn-outline-info"
+                                                      style="margin-left:0.5rem;margin-right:0.5rem;"
+                                                      (click)="addToCart( course )"
+                                                      *ngIf="( authService.isLoggedIn() && !authService.isAdmin() )">
+                                              <i class="fa fa-cart-plus pointer login"></i>
+                                            </button>
+                                            <button type="button" class="align-self-baselin btn btn-outline-info"
+                                                      style="margin-left:0.5rem;margin-right:0.5rem;"
+                                                      (click)="addToWishList( course )">
+                                              <i class="fa fa-heart pointer login"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div *ngFor="let course of courses" class="card">
+                                  <img class="card-img-top w-100 d-block" src="assets/img/desk.jpg">
+                                    <div class="card-body">
+                                        <h4 class="text-info card-title">{{ course.title }}</h4>
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <p class="text-center text-success">Price:&nbsp;</p>
+                                                </div>
+                                                <div *ngIf="course.price" class="col">
+                                                    <p class="text-center text-success">$ {{ course.price }}&nbsp;</p>
+                                                </div>
+                                                <div *ngIf="!course.price" class="col">
+                                                    <p class="text-center text-success">FREE</p>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="course.sale_price" class="row">
+                                                <div class="col-lg-5">
+                                                    <p class="text-center text-success">On Sale:&nbsp;</p>
+                                                </div>
+                                                <div class="col">
+                                                    <p class="text-center text-danger" style="font-weight:bold;">$ {{ course.sale_price }}&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col"><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i>
+                                                    <i
+                                                        class="fa fa-star" style="color:rgb(226,217,0);font-size:25px;margin:3px;"></i><i class="fa fa-star" style="color:#a2a2a2;font-size:25px;margin:3px;"></i>
+                                                        <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align:center;">
+                                            <button [routerLink]="['/course/' + course.id]" class="btn btn-outline-info align-self-baseline"
+                                              style="margin-left:0.5rem;margin-right:0.5rem;" type="button">
+                                              <i class="fa fa-search pointer login"></i>
+                                            </button>
+                                            <button type="button" class="align-self-baselin btn btn-outline-info"
+                                                      style="margin-left:0.5rem;margin-right:0.5rem;"
+                                                      (click)="addToCart( course )">
+                                              <i class="fa fa-cart-plus pointer login"></i>
+                                            </button>
+                                            <button type="button" class="align-self-baselin btn btn-outline-info"
+                                                      style="margin-left:0.5rem;margin-right:0.5rem;"
+                                                      (click)="addToWishList( course )">
+                                              <i class="fa fa-heart pointer login"></i>
+                                            </button>
+                                          </div>
+                                        </div>
+                                </div> -->
+
+                                <div *ngFor="let course of courses" class="col-12 col-md-6 col-lg-4">
+                                    <div class="clean-product-item">
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                        <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
+                                        <div class="about">
+                                            <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                            <div class="price">
+                                                <h3>$100</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                    <li class="page-item"><a class="page-link">2</a></li>
+                                    <li class="page-item"><a class="page-link">3</a></li>
+                                    <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>

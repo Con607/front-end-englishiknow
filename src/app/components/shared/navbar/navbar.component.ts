@@ -11,8 +11,7 @@ import { CartService } from '../../../services/cart.service';
   styleUrls: [
     './navbar.component.css',
     '../../../../assets/bootstrap/css/bootstrap.min.css',
-    '../../../../assets/css/Navigation-with-Button.css',
-    '../../../../assets/css/sidebar.css'
+    '../../../../assets/css/Navigation-with-Button.css'
   ]
 })
 

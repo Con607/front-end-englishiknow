@@ -18,7 +18,12 @@ export class SectionsService {
                 private router:Router,
                 private authService:AuthService ) {
 
-    this.headers = {
+    this.headers = this.getHeaders();
+  }
+
+
+  getHeaders() {
+    return {
       'Content-Type':  'application/json',
       'Authorization': this.authService.getToken()
     }
@@ -37,7 +42,7 @@ export class SectionsService {
     if ( this.isLoggedIn() ) {
       let url = URL_SERVER + '/course_sections';
 
-      return this.http.post( url, section, { headers: this.headers } )
+      return this.http.post( url, section, { headers: this.getHeaders() } )
             .pipe( map( (resp :any) => {
               this.successSectionCreateMessage(section.course_id);
               console.log(resp);
@@ -52,7 +57,7 @@ export class SectionsService {
     if ( this.isLoggedIn() ) {
       let url = URL_SERVER + '/course_sections/' + id;
 
-      return this.http.delete( url, { headers: this.headers } )
+      return this.http.delete( url, { headers: this.getHeaders() } )
               .pipe( map( (resp :any) => {
                 return resp;
               }));
@@ -64,7 +69,7 @@ export class SectionsService {
     if ( this.isLoggedIn() ) {
       let url = URL_SERVER + '/course_sections/' + id;
 
-      return this.http.patch( url, updatedSection, { headers: this.headers } )
+      return this.http.patch( url, updatedSection, { headers: this.getHeaders() } )
               .pipe( map( (resp :any) => {
                 return resp;
               }));

@@ -79,7 +79,9 @@ export class CoursesComponent implements OnInit {
       type: 'success',
       title: 'Course added to your cart.'
     }).then((result) => {
-      this.router.navigate(['/cart']);
+      if (result.value) {
+        this.router.navigate(['/cart']);
+      }
     })
   }
 

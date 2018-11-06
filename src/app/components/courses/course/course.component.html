@@ -1,4 +1,4 @@
-<main class="page landing-page" style="padding-top:0PX;">
+<!-- <main class="page landing-page" style="padding-top:0PX;">
     <div id="course" style="course_div">
         <div class="card-group" style="padding-bottom:0px;">
             <div class="col-lg-10 offset-lg-1">
@@ -12,7 +12,7 @@
                                       <br>
                                     </h2>
                                     <p style="margin-bottom:0px;margin-top:0px;">Short description about the course here...&nbsp; {{ course?.description }} ...<br><br></p>
-                                    <p class="text-info" style="font-size:15px;">Author: Elizabeth Anderson<br>Enrolled students: 17 <!-- {{ course?.students?.count }} --><br>Passing mark: {{ course?.passing_mark }} %</p>
+                                    <p class="text-info" style="font-size:15px;">Author: Elizabeth Anderson<br>Enrolled students: 17 <br>Passing mark: {{ course?.passing_mark }} %</p>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <p>Course progress:&nbsp;<br><span class="text-dark" style="font-size:20px;">10 of 25 lessons</span></p>
@@ -167,4 +167,189 @@
             </div>
         </div>
     </div>
+</main> -->
+
+
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container" style="padding-top:2rem;">
+            <!-- <div class="block-heading">
+                <h2 class="text-info">Product Page</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+            </div> -->
+            <div class="block-content">
+                <div class="product-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="gallery">
+                              <img class="img-fluid d-block mx-auto" src="assets/img/tech/image1.jpg">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info">
+                                <button *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                        (click)="deleteCourseMessage(course)" class="btn btn-outline-danger btn-sm float-right"
+                                        type="button">Delete Course</button>
+                                <h3 class="text-info">{{ course?.title }}</h3>
+                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                <div class="price">
+                                    <h3>{{ course?.price | currency }}</h3>
+                                </div>
+                                <button *ngIf="( authService.isLoggedIn() && !authService.isAdmin() )" class="btn btn-outline-primary" (click)="addToCart( course )" type="button">
+                                  <i class="icon-basket"></i>Add to Cart
+                                </button>
+                                <div class="summary">
+                                    <p class="text-info" style="font-size:15px;">Author: {{ author }}<br>Enrolled students: {{ course?.student_ids.length }}<br>Passing mark: {{ course?.passing_mark }} %</p>
+                                    <div class="row" *ngIf="( authService.isLoggedIn() && !authService.isAdmin() )">
+                                        <div class="col-md-6">
+                                            <p>Course progress:&nbsp;<br><span class="text-dark" style="font-size:20px;">10 of 25 lessons</span></p>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Course results:&nbsp;<br><span class="text-dark" style="font-size:20px;">80% in progress</span></p>
+                                            <div class="progress" style="margin-top:16px;margin-bottom:16px;">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#description" id="description-tab">Description</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#lessons" id="lessons-tab">Lessons</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#reviews" id="reviews-tab">Reviews</a></li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane active fade show description" role="tabpanel" id="description">
+                              <p>{{ course?.description }}</p>
+                            </div>
+
+                            <div class="tab-pane fade show" role="tabpanel" id="lessons">
+
+                              <div style="margin-top:1rem;">
+                                  <div class="row">
+                                      <div class="col">
+                                        <button (click)="newSectionMessage(course)" *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                class="btn btn-outline-primary btn-sm float-right d-flex flex-row-reverse align-items-center add-lesson-and-section-buttons"
+                                                type="button" id="btn-add-section">Section<i class="fa fa-plus-circle"></i>
+                                        </button>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <p *ngIf="course?.course_sections.length < 1" >Add some sections and lessons here to start.</p>
+
+                              <div *ngFor="let course_section of course?.course_sections" class="table-responsive course-content-table">
+                                  <table class="table table-striped table-hover table-sm">
+                                      <thead>
+                                          <tr>
+                                              <th colspan="3" class="text-info">{{course_section?.name}}
+                                                <i *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                    (click)="deleteSectionMessage(course_section?.id)"
+                                                    class="fa fa-trash-o float-right align-items-end header-section-icons pointer"></i>
+                                                <i *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                    (click)="updateSectionMessage(course_section)"
+                                                    class="fa fa-pencil float-right header-section-icons pointer"></i>
+                                              </th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let lesson of course_section?.lessons">
+                                            <td>{{ lesson.name }}</td>
+                                            <td>
+                                                <div class="course-table-icons">
+                                                  <i *ngIf="( authService.isLoggedIn() && !authService.isAdmin() )"
+                                                      class="fa fa-check-square-o header-section-icons text-info"></i>
+                                                  <i *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                      (click)="updateLesson(course.id, lesson.id)"
+                                                      class="fa fa-pencil header-section-icons text-warning pointer"></i>
+                                                  <i *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                      (click)="deleteLessonMessage(course.id, lesson.id)"
+                                                      class="fa fa-trash-o header-section-icons text-danger pointer"></i></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i *ngIf="( authService.isLoggedIn() && authService.isAdmin() )"
+                                                    (click)="addNewLesson(course_section)"
+                                                    class="fa fa-plus-circle d-table-cell header-section-icons text-info pointer"> Add</i></td>
+                                            <td>
+                                                <div class="course-table-icons"></div>
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+
+                            </div>
+
+                            <div class="tab-pane fade show" role="tabpanel" id="reviews">
+                                <div class="reviews">
+                                    <div class="review-item">
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                                <div class="reviews">
+                                    <div class="review-item">
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                                <div class="reviews">
+                                    <div class="review-item">
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clean-related-items">
+                    <h3>Related Products</h3>
+                    <div class="items">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="clean-related-item">
+                                    <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                    <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>$300</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="clean-related-item">
+                                    <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                    <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>$300</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="clean-related-item">
+                                    <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                    <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                        <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                        <h4>$300</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>

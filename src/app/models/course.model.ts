@@ -2,6 +2,7 @@ import { Section } from "./section.model";
 
 export class Course {
 
+  [x: string]: any;
   course_sections: Section[];
   id: number;
 
@@ -15,6 +16,7 @@ export class Course {
     public featured: boolean = false,
     public reviewed: boolean = false,
     public published: boolean = false,
+    public images?: File,
     public sale_price?: number,
     public duration?: number,
     public max_students?: number,
