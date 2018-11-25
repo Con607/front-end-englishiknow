@@ -84,9 +84,9 @@
 <main class="page catalog-page">
     <section class="clean-block clean-catalog dark">
         <div class="container">
-            <div class="block-heading">
+            <div class="block-heading" style="padding-top:0px;">
                 <h2 class="text-info">Courses</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p> -->
             </div>
 
             <div class="content">
@@ -163,8 +163,8 @@
 
                                 <div *ngFor="let course of courses" class="col-12 col-md-6 col-lg-4">
                                     <div class="clean-product-item">
-                                        <div class="image"><a [routerLink]="['/course/' + course.id]"><img class="img-fluid d-block mx-auto" src="assets/img/desk.jpg"></a></div>
-                                        <div class="product-name"><a href="#">{{ course.title }}</a></div>
+                                        <div class="image"><a [routerLink]="['/pages/course/' + course.id]"><img class="img-fluid d-block mx-auto" src="assets/img/desk.jpg"></a></div>
+                                        <div class="product-name"><a href="#">{{ (course.title.length>15)? (course.title | slice:0:15)+'..':(course.title)  }}</a></div>
                                         <div class="about">
                                             <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
                                             <div *ngIf="course.price" class="price">
@@ -176,7 +176,7 @@
                                         </div>
                                         <p style="font-size:0.8rem;">4.0 Stars of 39 reviews</p>
                                         <div style="text-align:center;">
-                                            <button [routerLink]="['/course/' + course.id]" class="btn btn-outline-info align-self-baseline"
+                                            <button [routerLink]="['/pages/course/' + course.id]" class="btn btn-outline-info align-self-baseline"
                                               style="margin-left:0.5rem;margin-right:0.5rem;" type="button">
                                               <i class="fa fa-search pointer login"></i>
                                             </button>

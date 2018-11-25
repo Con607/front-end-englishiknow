@@ -1,0 +1,5 @@
+
+
+.clean-product-item .image img {
+  max-width: -webkit-fill-available!important;
+}

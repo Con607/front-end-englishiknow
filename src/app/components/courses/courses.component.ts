@@ -11,7 +11,11 @@ import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  styleUrls: [
+    './courses.component.css',
+    '../../../assets/bootstrap/css/bootstrap.min.css',
+    '../../../assets/css/smoothproducts.css'
+  ]
 })
 export class CoursesComponent implements OnInit {
 

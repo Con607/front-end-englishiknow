@@ -146,7 +146,7 @@ export class AuthService {
 
     // sessionStorage.clear();
 
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/authentication/login2']);
   }
 
 
@@ -171,7 +171,7 @@ export class AuthService {
       title: 'Succesfully signed in!',
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/dashboard1']);
     });
   }
 
@@ -188,7 +188,7 @@ export class AuthService {
       title: 'Succesfully registered!',
       type: 'success'
     }).then((result) => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/dashboard1']);
     });
   }
 
